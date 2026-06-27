@@ -2,9 +2,21 @@ import os
 from langchain_tavily import TavilySearch
 from langchain_core.tools import tool
 
+_VALID_TIME_RANGES = {"day", "week", "month", "year"}
 
-def get_tavily_search_tool(max_results: int = 5) -> TavilySearch:
-    return TavilySearch(max_results=max_results)
+
+class _SafeTavilySearch(TavilySearch):
+    """TavilySearch wrapper that silently drops invalid time_range values."""
+
+    def invoke(self, input, config=None, **kwargs):
+        if isinstance(input, dict) and "time_range" in input:
+            if input["time_range"] not in _VALID_TIME_RANGES:
+                input = {k: v for k, v in input.items() if k != "time_range"}
+        return super().invoke(input, config=config, **kwargs)
+
+
+def get_tavily_search_tool(max_results: int = 5) -> _SafeTavilySearch:
+    return _SafeTavilySearch(max_results=max_results)
 
 
 @tool
@@ -45,7 +57,7 @@ def _youtube_api_search(query: str, api_key: str) -> str:
 
 
 def _tavily_youtube_search(query: str) -> str:
-    tavily = TavilySearch(max_results=5)
+    tavily = _SafeTavilySearch(max_results=5)
     raw = tavily.invoke(f"site:youtube.com shorts {query}")
     # New langchain_tavily returns full API dict; old version returned a list
     if isinstance(raw, dict):

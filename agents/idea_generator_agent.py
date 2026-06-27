@@ -11,7 +11,7 @@ from tools import get_tavily_search_tool, search_youtube_shorts
 
 AREAS = [
     "history", "science", "latest science news", "geography", "nature", "space",
-    "psychology", "psychology studies", "technology", "interesting events", "inspiring people",
+    "technology", "interesting events", "inspiring people",
     "archaeology news", "aviation reports", "research papers",
     "world cultures", "hidden mechanisms",
 ]
@@ -355,7 +355,6 @@ Study these PROVEN viral structures:
 3. THE BELIEF FLIP — something everyone 'knows' is provably wrong:
    "Everything You Know About Carthage Is Roman Propaganda"
    "Fish Taught Submarines How To Dive" (not ballast tanks — fish swim bladders did it first)
-   "Suppressing Dark Thoughts Actually Works" (vs. the pop-psychology consensus)
 
 4. THE HIDDEN CATASTROPHE — a trusted system secretly caused harm:
    "Your Boss's AI Is Making You Dumber"
@@ -425,47 +424,6 @@ GOOD search queries targeting these sources:
 BAD search queries: "interesting [topic] facts", "shocking [topic] discoveries", "mind blowing [topic]"
 
 ━━━ AREA GUIDANCE — what each area means ━━━
-
-psychology /         → Must be a SPECIFIC NAMED EXPERIMENT with a STORY — not a vague finding.
-psychology studies     The experiment itself must be the story: what the researcher did, what
-                       happened, what the shocking result was, and what it implies about YOU.
-
-                       THE PATTERN TO FOLLOW:
-                       Richter 1957 — rats placed in water gave up and drowned in ~15 minutes.
-                       BUT rats that were briefly rescued once before being put back swam for
-                       60+ HOURS. "Hope" made them survive 240x longer. Title: "Rats That Were
-                       Rescued Once Swam For 60 Hours" or "Hope Is Physically Measurable"
-
-                       MORE EXAMPLES OF THIS PATTERN (use these as templates, not topics):
-                       • Milgram 1961 — 65% of ordinary people administered what they thought
-                         were fatal electric shocks to strangers because an authority figure said to.
-                         Title: "65% Of People Will Electrocute A Stranger If Asked Nicely"
-                       • Harlow 1958 — baby monkeys chose a soft cloth "mother" over a wire mother
-                         with food. Proved love/comfort matters more than feeding to survival.
-                         Title: "Baby Monkeys Chose Hugs Over Food — And Died For It"
-                       • Stanford Prison 1971 — ordinary students became sadistic guards in 6 days.
-                         Stopped early because the researcher forgot he was also the prison warden.
-                       • Rosenhan 1973 — sane people faked symptoms to get into psychiatric hospitals,
-                         then acted normally. None were detected as sane. Only the other patients
-                         suspected them. Title: "Sane People Checked Into Asylums — Nobody Noticed"
-                       • Good Samaritan 1973 — seminary students rushing to give a lecture ON
-                         THE PARABLE OF THE GOOD SAMARITAN walked past a man dying in an alleyway.
-                         Title: "People Rushing To Preach About Helping Others Ignored A Dying Man"
-                       • Asch 1951 — people denied what their own eyes saw to agree with a group.
-                         75% gave a wrong answer at least once. Title: "Your Brain Will Lie To Your
-                         Eyes To Avoid Social Rejection"
-
-                       WHAT TO SEARCH FOR:
-                       "psychology experiment shocking result site:pubmed.gov"
-                       "famous psychology study counterintuitive finding"
-                       "animal experiment revealed surprising truth about survival"
-                       "psychological study participants didn't expect result"
-                       "experiment stopped early unexpected outcome psychology"
-
-                       BAD (DO NOT generate these):
-                       ✗ "Study shows social media is addictive" — vague, no story, no experiment
-                       ✗ "Research finds stress causes health problems" — generic, no narrative
-                       ✗ "Psychologists discover people are happier outdoors" — boring, expected
 
 archaeology news     → Recent digs that overturn history textbooks. Not "ancient Egyptians built X" —
                        find the DIG that proved experts wrong, the artefact in the wrong place, the
@@ -687,7 +645,6 @@ WORLD CULTURES (shocking/unknown practices that are completely normal locally):
   head must brush the ground. Preceded bungee jumping by centuries.
 
 RESEARCH PAPERS (results that broke their own field):
-  The replication crisis — 50% of psychology studies couldn't be reproduced ·
   The study that found placebos work even when patients know they're placebos ·
   The paper that proved a common painkiller reduces empathy
 

@@ -1,0 +1,26 @@
+# Secrets — never commit
+.env
+.claude/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Generated outputs (large files, personal data)
+generated_images/
+channel_analysis.json
+audience_insights.json
+ideas_history.json
+bookmarks.json
+favorites.json
+blacklist.json
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Streamlit cache
+.streamlit/

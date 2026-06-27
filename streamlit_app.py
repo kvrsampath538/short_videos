@@ -2,6 +2,7 @@ import streamlit as st
 import sys
 import os
 import json
+import shutil
 import traceback
 from pathlib import Path
 # ── Env & path setup ──────────────────────────────────────────────────────────
@@ -53,7 +54,7 @@ def _save_outputs(run_dir, best_idea, scenes, script):
              "", f"Total: {sum(s.get('duration_seconds', 5) for s in scenes)}s", "-" * 60]
     for s in scenes:
         lines += ["",
-                  f"Scene {s.get('scene_number'):02d}  [{s.get('duration_seconds')}s]",
+                  f"Scene {s.get('scene_number') or 0:02d}  [{s.get('duration_seconds')}s]",
                   f"  Narration : {s.get('narration','')}",
                   f"  Prompt    : {s.get('image_prompt','')}"]
     (run_dir / "storyboard.txt").write_text("\n".join(lines), encoding="utf-8")
@@ -1885,7 +1886,11 @@ elif st.session_state.phase == "done":
     if best:
         slug    = "".join(c if c.isalnum() else "_" for c in best.get("title","short").lower())[:30]
         run_dir = OUTPUT_BASE / slug
-        for fname, label in [("telugu_script.txt", "⬇️  Telugu Script"), ("storyboard.txt", "⬇️  Storyboard")]:
+        _dl_files = [
+            ("telugu_script.txt", "⬇️  Telugu Script"),
+            ("storyboard.txt",    "⬇️  Storyboard"),
+        ]
+        for fname, label in _dl_files:
             p = run_dir / fname
             if p.exists():
                 with col_dl:
@@ -2188,7 +2193,7 @@ elif st.session_state.phase == "ready_boards":
             _n_sc   = len(_scenes)
             _n_img  = _b["n_images"]
 
-            _col_card, _col_view = st.columns([5, 1])
+            _col_card, _col_view, _col_del = st.columns([5, 1, 1])
 
             with _col_card:
                 with st.container(border=True):
@@ -2236,6 +2241,28 @@ elif st.session_state.phase == "ready_boards":
                     st.session_state._rb_folder    = str(_b["folder"])
                     st.session_state.phase         = "board_view"
                     st.rerun()
+
+            with _col_del:
+                st.markdown("<br><br>", unsafe_allow_html=True)
+                _del_confirm_key = f"rb_del_confirm_{_i}"
+                if st.session_state.get(_del_confirm_key):
+                    st.warning("Delete?")
+                    _dc1, _dc2 = st.columns(2)
+                    with _dc1:
+                        if st.button("Yes", key=f"rb_del_yes_{_i}", use_container_width=True):
+                            shutil.rmtree(_b["folder"], ignore_errors=True)
+                            st.session_state.pop(_del_confirm_key, None)
+                            st.rerun()
+                    with _dc2:
+                        if st.button("No", key=f"rb_del_no_{_i}", use_container_width=True):
+                            st.session_state.pop(_del_confirm_key, None)
+                            st.rerun()
+                else:
+                    if st.button("🗑 Delete", key=f"rb_del_{_i}",
+                                 use_container_width=True,
+                                 help="Permanently delete this board"):
+                        st.session_state[_del_confirm_key] = True
+                        st.rerun()
 
         st.divider()
         if st.button("🏠 Back to Home", type="primary"):
@@ -2328,11 +2355,12 @@ elif st.session_state.phase == "board_view":
     # ── Download buttons ──────────────────────────────────────────────────────
     dl_col, use_col, back_col2 = st.columns([2, 1, 1])
     with dl_col:
-        _bv_dl_cols = st.columns(2)
-        for _ci, (fname, label) in enumerate([
-            ("telugu_script.txt", "⬇️ Telugu Script"),
-            ("storyboard.txt",    "⬇️ Storyboard"),
-        ]):
+        _bv_dl_files = [
+            ("telugu_script.txt",   "⬇️ Telugu Script"),
+            ("storyboard.txt",      "⬇️ Storyboard"),
+        ]
+        _bv_dl_cols = st.columns(len(_bv_dl_files))
+        for _ci, (fname, label) in enumerate(_bv_dl_files):
             _p = _bv_dir / fname
             if _p.exists():
                 with _bv_dl_cols[_ci]:

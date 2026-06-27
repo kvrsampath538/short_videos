@@ -153,39 +153,6 @@ MYSTERY (hidden systems, unexplained mechanics):
   Dead Hand nuclear auto-launch system · Fingerprint uniqueness (why every person differs — unknown) ·
   Labyrinth navigation biology · U-2 spy plane chase car · PAPI approach lights geometry
 
-PSYCHOLOGY EXPERIMENTS (the pattern: SPECIFIC EXPERIMENT → SHOCKING RESULT → IMPLICATION ABOUT YOU):
-  The key is a NAMED EXPERIMENT with a NARRATIVE — what the researcher did, what happened, and
-  what it means about human nature. Search "famous psychology experiment counterintuitive result".
-
-  STRONG examples (use these patterns, not these exact topics):
-  • Richter 1957 rat drowning — rats swam 15 min then drowned, BUT rescued-once rats swam 60+ HOURS.
-    "Hope" is physically measurable. Title: "Rats With Hope Survived 240x Longer"
-  • Milgram 1961 — 65% of ordinary people administered what they believed were lethal electric
-    shocks to strangers because an authority figure asked them to.
-    Title: "65% Of People Will Kill A Stranger If Asked Politely By The Right Person"
-  • Rosenhan 1973 — sane researchers faked one symptom to get committed to psychiatric hospitals,
-    then acted completely normally. Not one doctor detected them as sane. Only fellow patients did.
-    Title: "Sane People Checked Into Asylums — The Doctors Never Noticed"
-  • Good Samaritan 1973 — seminary students rushing to deliver a lecture ON HELPING OTHERS walked
-    past a man slumped in an alley, dying. The subject of their lecture didn't stop them.
-    Title: "People Rushing To Preach About Helping Ignored A Dying Man"
-  • Harlow monkeys 1958 — baby monkeys chose a soft cloth mother with no food over a wire mother
-    with food. The babies who chose comfort over food were psychologically healthier.
-    Title: "Baby Monkeys Chose Hugs Over Food — And The Scientists Were Wrong"
-  • Asch 1951 — 75% of people denied what their own eyes clearly showed them just to agree
-    with a group of strangers who were deliberately wrong.
-    Title: "Your Brain Will Lie To Your Eyes To Avoid Being Rejected"
-  • Stanford Prison 1971 — ordinary college students assigned "guard" roles became psychologically
-    abusive in under a week. The researcher had to be reminded by his own girlfriend to stop it.
-  • Marshmallow test reversal 2018 — the famous study that said kids who wait are more successful
-    was completely debunked. Family income was the predictor, not willpower.
-    Title: "The Most Famous Study In Psychology Was Wrong The Whole Time"
-  • Broken windows theory reversal 2019 — the theory that visible disorder causes crime (used to
-    justify mass policing) was disproven when actual policing levels were controlled for.
-
-  WHAT TO SEARCH: "psychology experiment stopped early unexpected result", "famous study debunked",
-  "animal experiment revealed counterintuitive truth survival", "psychology study participants shocked"
-
 HUMAN STORIES (one person, impossible specific outcome):
   Desmond Doss — saved 75 men at Hacksaw Ridge, refused to ever carry a weapon
   Grigori Perelman — solved the $1M Poincaré Conjecture, declined the prize and vanished
@@ -244,15 +211,8 @@ WORLD CULTURES (shocking practices that are completely normal locally):
 
 EXAMPLES OF STRONG VS WEAK:
 WEAK: "Social media is addictive" — vague, no experiment, no story, no shock
-STRONG (psychology): "Rats that were rescued once swam for 60 hours — rats that weren't swam for
-         15 minutes. Richter's 1957 experiment proved that hope is physically measurable."
-         Title: "Rats With Hope Survived 240x Longer Than Rats Without It"
 
 WEAK: "Study shows stress is bad for you" — everyone knows, no narrative
-STRONG (psychology): "65% of ordinary people in Milgram's experiment administered what they believed
-         were lethal electric shocks to strangers — not because they were evil, but because someone
-         in a lab coat told them to. The experiment was stopped early."
-         Title: "65% Of People Will Kill A Stranger If An Expert Asks Them To"
 
 WEAK: "This person overcame adversity"
 STRONG: "Doctors gave her a 2% chance of survival, she was paralysed from the neck down, and 4 years
@@ -321,7 +281,7 @@ def research_agent_node(state: dict) -> dict:
             f"Topic: '{input_topic}'\n"
             f"Previous ideas were rejected: {rejection_reason}\n\n"
             f"Find 3 COMPLETELY DIFFERENT angles — go darker, more niche, more counter-intuitive. "
-            f"Try unexplored entry points: psychological research findings, technology consequences, "
+            f"Try unexplored entry points: technology consequences, "
             f"the human story behind the topic, a historical parallel nobody draws, "
             f"or a recent scientific reversal that changes everything we thought we knew. "
             f"Search for classified/declassified data, peer-reviewed study surprises, "

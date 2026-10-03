@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-739c0fe9-560b-46cc-84ff-5ef593125628/styles.css">
+<script src="_ds/organic-739c0fe9-560b-46cc-84ff-5ef593125628/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:var(--color-bg);}
+:root{--color-bg:#ffffff;--color-surface:#f3f2f7;--color-text:#0f0f14;--color-accent:#e60030;--color-accent-2:#1877f2;--color-divider:color-mix(in srgb,#0f0f14 14%,transparent);
+--color-neutral-100:#f7f7fa;--color-neutral-200:#ececf2;--color-neutral-300:#d8d8e2;--color-neutral-400:#b4b4c2;--color-neutral-500:#8e8e9e;--color-neutral-600:#6c6c7c;--color-neutral-700:#53535f;--color-neutral-800:#383843;--color-neutral-900:#16161d;
+--color-accent-100:#ffeef0;--color-accent-200:#ffd6dc;--color-accent-300:#ffa3b1;--color-accent-400:#ff6680;--color-accent-500:#ff2d52;--color-accent-600:#c4002a;--color-accent-700:#a30024;--color-accent-800:#75001a;--color-accent-900:#4a0010;
+--color-accent-2-100:#eaf2ff;--color-accent-2-200:#d2e3fd;--color-accent-2-300:#a6c8fb;--color-accent-2-400:#6ba4f7;--color-accent-2-500:#3d8af5;--color-accent-2-600:#1466d6;--color-accent-2-700:#0f52b0;--color-accent-2-800:#0b3c82;--color-accent-2-900:#082856;}
+a{color:var(--color-accent-700);}
+a:hover{color:var(--color-accent-800);}
+details>summary{list-style:none;cursor:pointer;}
+details>summary::-webkit-details-marker{display:none;}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;overflow:hidden;min-height:100vh;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);">
+  <div ref="{{ overlayRef }}" style="position:absolute;inset:0;z-index:30;pointer-events:none;background:var(--color-accent);clip-path:circle(0% at 50% 50%);"></div>
+
+  <sc-if value="{{ showBar }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 24px;background:var(--color-neutral-900);color:var(--color-neutral-100);font-size:12px;">
+    <span style="opacity:0.7;margin-right:6px;letter-spacing:0.08em;text-transform:uppercase;font-size:11px;">Preview screen</span>
+    <sc-for list="{{ screens }}" as="s" hint-placeholder-count="10">
+      <button onClick="{{ s.go }}" style="{{ s.style }}">{{ s.label }}</button>
+    </sc-for>
+  </div>
+  </sc-if>
+
+  <div style="max-width:940px;margin:0 auto;padding:28px 24px 64px;">
+
+    <header style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:var(--space-4);">
+      <div style="font-family:var(--font-heading);font-size:34px;line-height:1.05;letter-spacing:-0.02em;margin-right:auto;">Shorts <span style="color:var(--color-accent);">AI</span></div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--color-accent-2-100);color:var(--color-accent-2-800);font-size:13px;font-weight:600;"><span style="width:8px;height:8px;border-radius:50%;background:var(--color-accent-2-600);"></span>Ollama running — local AI active</span>
+        <button class="btn btn-secondary">Stop</button>
+        <button class="btn btn-secondary" disabled="disabled">Start</button>
+      </div>
+    </header>
+
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <p style="margin:-6px 0 var(--space-4);font-size:13px;color:var(--color-neutral-700);letter-spacing:0.02em;">Idea · Research · Freshness · Storyboard · Telugu Script</p>
+    </sc-if>
+
+    <sc-if value="{{ showProgress }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--space-6);">
+        <div style="flex:1;height:8px;border-radius:999px;background:var(--color-surface);overflow:hidden;">
+          <div style="height:100%;border-radius:999px;background:linear-gradient(45deg,#feda75,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5);width:{{ progress }};transition:width .4s;"></div>
+        </div>
+        <sc-if value="{{ notHome }}" hint-placeholder-val="{{ false }}">
+          <button class="btn btn-ghost" onClick="{{ goHome }}">Home</button>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- HOME -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:var(--space-8);align-items:start;">
+        <div style="display:flex;flex-direction:column;gap:var(--space-4);min-width:0;">
+          <div data-anim="scale" style="background:var(--color-surface);border-radius:32px;padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-3);">
+            <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:700;">What do you want to make?</div>
+            <h2 style="margin:0;font-size:32px;">Your next viral Short</h2>
+            <p style="margin:0;font-size:14px;color:var(--color-neutral-700);">Type a topic below — or let the AI hunt for something nobody's covered yet.</p>
+            <input class="input" placeholder="e.g. ultraedge technology in cricket" style="background:var(--color-bg);min-height:44px;font-size:15px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);">
+              <button class="btn btn-primary" onClick="{{ goResearch }}" style="min-height:42px;">Use My Idea</button>
+              <button class="btn btn-secondary" onClick="{{ goReview }}" style="min-height:42px;">Create Storyboard</button>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+            <h6 style="margin:var(--space-2) 0 0;color:var(--color-neutral-700);font-family:var(--font-body);font-weight:700;">Generate ideas by topic</h6>
+            <button class="btn btn-secondary" onClick="{{ goIdeas }}" style="min-height:42px;background:var(--color-accent-2-100);border-color:transparent;color:var(--color-accent-2-800);">All Topics — Surprise Me</button>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <sc-for list="{{ topics }}" as="t" hint-placeholder-count="16">
+                <button data-anim="pop" class="btn btn-secondary" onClick="{{ goIdeas }}" style="font-family:var(--font-body);font-weight:600;font-size:13px;">{{ t }}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+            <h6 style="margin:var(--space-2) 0 0;color:var(--color-neutral-700);font-family:var(--font-body);font-weight:700;">Tools</h6>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:var(--space-2);">
+              <sc-for list="{{ tools }}" as="tool" hint-placeholder-count="10">
+                <button data-anim="up" onClick="{{ tool.go }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:14px 18px;border-radius:24px;border:1px solid var(--color-divider);background:transparent;cursor:pointer;color:var(--color-text);font-family:var(--font-body);" style-hover="background:var(--color-accent-100);border-color:var(--color-accent-300);">
+                  <span style="font-family:var(--font-heading);font-size:15px;">{{ tool.label }}</span>
+                  <span style="font-size:12px;color:var(--color-neutral-700);">{{ tool.meta }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <p style="margin:var(--space-2) 0 0;font-size:13px;color:var(--color-neutral-700);">Or let the AI browse history, science, space, nature &amp; geography for a viral idea.</p>
+          </div>
+        </div>
+
+        <aside style="display:flex;flex-direction:column;gap:var(--space-3);position:sticky;top:24px;">
+          <div data-anim="circle" style="width:220px;height:220px;border-radius:50%;background:var(--color-accent-2-200);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;">
+            <div style="font-family:var(--font-heading);font-size:44px;line-height:1;color:var(--color-accent-2-800);">12</div>
+            <div style="font-size:13px;color:var(--color-accent-2-800);font-weight:600;">ready boards</div>
+          </div>
+          <div style="font-size:13px;color:var(--color-neutral-700);line-height:1.5;">Top areas for your audience: <b style="color:var(--color-text);">space · history · hidden mechanisms</b></div>
+        </aside>
+      </div>
+    </sc-if>
+
+    <!-- SHARED SCREEN HEADER -->
+    <sc-if value="{{ notHome }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:flex-start;gap:var(--space-4);margin-bottom:var(--space-6);">
+        <div style="flex:1;min-width:0;">
+          <h2 data-anim="word" style="margin:0;font-size:34px;text-wrap:balance;">{{ hdr.title }}</h2>
+          <p data-anim="up" style="margin:6px 0 0;font-size:14px;color:var(--color-neutral-700);max-width:60ch;">{{ hdr.sub }}</p>
+        </div>
+        <button class="btn btn-secondary" onClick="{{ goHome }}" style="flex:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Back
+        </button>
+      </div>
+    </sc-if>
+
+    <!-- IDEAS / ARCHIVE / BOOKMARKS -->
+    <sc-if value="{{ isIdeaList }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ isArchive }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:var(--space-2);margin-bottom:var(--space-3);">
+          <input class="input" placeholder="Filter by title or concept..." style="min-height:42px;">
+          <select class="input" style="min-height:42px;"><option>All areas</option><option>history</option><option>space</option><option>nature</option><option>technology</option></select>
+        </div>
+      </sc-if>
+      <p style="margin:0 0 var(--space-3);font-size:13px;color:var(--color-neutral-700);">{{ listCaption }}</p>
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+        <sc-for list="{{ ideas }}" as="idea" hint-placeholder-count="4">
+          <div data-anim="up" style="display:flex;gap:var(--space-3);align-items:stretch;">
+            <div style="flex:1;min-width:0;background:var(--color-surface);border-radius:32px;padding:var(--space-4) var(--space-6);display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <span class="tag tag-accent" style="text-transform:uppercase;letter-spacing:0.08em;font-weight:700;">{{ idea.area }}</span>
+                <span class="tag tag-accent-2" style="font-weight:600;">{{ idea.sat }}</span>
+              </div>
+              <div style="font-family:var(--font-heading);font-size:21px;line-height:1.2;">{{ idea.title }}</div>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:var(--color-neutral-800);">{{ idea.concept }}</p>
+              <div style="padding:10px 16px;border-radius:20px;background:var(--color-accent-100);color:var(--color-accent-800);font-size:14px;font-style:italic;line-height:1.5;">“{{ idea.hook }}”</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;justify-content:center;flex:none;">
+              <button class="btn btn-primary" onClick="{{ goReview }}" style="min-width:96px;">{{ primaryAction }}</button>
+              <div style="display:flex;gap:6px;justify-content:center;">
+                <button class="btn btn-secondary btn-icon" title="Bookmark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg></button>
+                <button class="btn btn-secondary btn-icon" title="Blacklist"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m4.9 4.9 14.2 14.2"></path></svg></button>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-3);margin-top:var(--space-6);">
+        <sc-if value="{{ isIdeas }}" hint-placeholder-val="{{ false }}">
+          <button class="btn btn-secondary">Generate 5 More Ideas</button>
+        </sc-if>
+        <sc-if value="{{ isArchive }}" hint-placeholder-val="{{ false }}">
+          <button class="btn btn-secondary" disabled="disabled">← Prev</button>
+          <span style="font-size:13px;color:var(--color-neutral-700);">Page 1 of 9</span>
+          <button class="btn btn-secondary">Next →</button>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <!-- CREATIVE REVIEW -->
+    <sc-if value="{{ isReview }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:12px 18px;border-radius:999px;background:var(--color-accent-2-100);color:var(--color-accent-2-800);font-size:14px;margin-bottom:var(--space-4);">Review the selected idea below. Approve to proceed or reject to find something fresher.</div>
+      <div data-anim="scale" style="background:var(--color-surface);border-radius:36px;padding:var(--space-8);display:flex;flex-direction:column;gap:var(--space-3);max-width:720px;">
+        <span class="tag tag-accent" style="align-self:flex-start;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;">history</span>
+        <h3 style="margin:0;font-size:30px;">Why Konark's Wheels Still Tell the Exact Time</h3>
+        <p style="margin:0;font-size:15px;line-height:1.65;">The 24 stone wheels of the Konark Sun Temple are working sundials — the shadow of each spoke reads the hour to within minutes, 800 years after they were carved.</p>
+        <p style="margin:0;font-size:13px;color:var(--color-neutral-700);">Why chosen: low saturation in Telugu Shorts, strong visual hook, high audience interest in Odisha heritage.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-6);">
+        <button class="btn btn-primary" onClick="{{ goPipeline }}" style="min-height:42px;">Approve &amp; Generate</button>
+        <button class="btn btn-secondary" style="min-height:42px;">Reject — try again</button>
+        <button class="btn btn-secondary" style="min-height:42px;">Bookmark</button>
+      </div>
+    </sc-if>
+
+    <!-- PRODUCTION PIPELINE -->
+    <sc-if value="{{ isPipeline }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);max-width:720px;">
+        <sc-for list="{{ pipeline }}" as="p" hint-placeholder-count="2">
+          <div data-anim="up" style="background:var(--color-surface);border-radius:28px;padding:var(--space-4) var(--space-6);display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="{{ p.dotStyle }}"></span>
+              <span style="font-family:var(--font-heading);font-size:18px;">{{ p.name }}</span>
+              <span class="tag tag-neutral" style="margin-left:auto;">{{ p.state }}</span>
+            </div>
+            <p style="margin:0;font-size:14px;color:var(--color-neutral-800);">{{ p.detail }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <button class="btn btn-primary" onClick="{{ goDone }}" style="margin-top:var(--space-6);min-height:42px;">View result</button>
+    </sc-if>
+
+    <!-- DONE -->
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div data-anim="scale" style="background:var(--color-accent-2-200);border-radius:36px;padding:var(--space-6) var(--space-8);display:flex;flex-direction:column;gap:8px;margin-bottom:var(--space-6);">
+        <h3 style="margin:0;font-size:28px;color:var(--color-accent-2-900);">Why Konark's Wheels Still Tell the Exact Time</h3>
+        <p style="margin:0;font-size:14px;color:var(--color-accent-2-900);">The 24 stone wheels of the Konark Sun Temple are working sundials — 800 years on.</p>
+        <span style="font-size:12px;color:var(--color-accent-2-800);">Completed in 1 iteration(s)</span>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.3fr);gap:var(--space-6);">
+        <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+          <h4 style="margin:0 0 4px;">Storyboard</h4>
+          <sc-for list="{{ scenes }}" as="sc" hint-placeholder-count="5">
+            <details data-anim="up" style="background:var(--color-surface);border-radius:24px;padding:12px 18px;">
+              <summary style="display:flex;gap:10px;align-items:baseline;font-size:14px;">
+                <span style="font-family:var(--font-heading);color:var(--color-accent-700);flex:none;">{{ sc.n }}</span>
+                <span style="flex:none;font-weight:700;">{{ sc.dur }}</span>
+                <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;">{{ sc.narr }}</span>
+              </summary>
+              <div style="padding-top:10px;font-size:13px;line-height:1.55;display:flex;flex-direction:column;gap:6px;">
+                <div><b>Narration:</b> {{ sc.narr }}</div>
+                <div style="color:var(--color-neutral-700);"><b style="color:var(--color-text);">Image prompt:</b> {{ sc.prompt }}</div>
+              </div>
+            </details>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+          <h4 style="margin:0 0 4px;">Telugu Script</h4>
+          <div style="background:var(--color-neutral-100);border-radius:32px;padding:var(--space-4) var(--space-6);display:flex;flex-direction:column;gap:10px;">
+            <div style="font-weight:700;font-size:15px;">Konark Chakralu — Rayi lo Samayam</div>
+            <sc-for list="{{ script }}" as="ln" hint-placeholder-count="5">
+              <div data-anim="up" style="font-size:15px;line-height:1.75;"><b style="color:var(--color-accent-700);">{{ ln.n }}.</b> {{ ln.t }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-6);">
+        <button class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>Telugu Script</button>
+        <button class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>Storyboard</button>
+        <button class="btn btn-primary" onClick="{{ goHome }}" style="margin-left:auto;">Start Over</button>
+      </div>
+    </sc-if>
+
+    <!-- CHAT -->
+    <sc-if value="{{ isChat }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);max-width:760px;">
+        <sc-for list="{{ chat }}" as="m" hint-placeholder-count="3">
+          <div data-anim="pop" style="{{ m.style }}">{{ m.text }}</div>
+        </sc-for>
+        <div data-anim="up" style="background:var(--color-surface);border-radius:28px;padding:var(--space-4);display:flex;flex-direction:column;gap:10px;">
+          <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-700);font-weight:700;">Active idea</div>
+          <div style="font-family:var(--font-heading);font-size:18px;">Voyager's Golden Record Is Still Playing to No One</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <button class="btn btn-primary" onClick="{{ goDone }}">Storyboard</button>
+            <button class="btn btn-secondary">Bookmark</button>
+            <button class="btn btn-secondary">Saturation</button>
+            <button class="btn btn-secondary">Research</button>
+            <button class="btn btn-ghost">Clear</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;padding:6px 6px 6px 20px;border-radius:999px;background:var(--color-surface);border:1px solid var(--color-divider);margin-top:var(--space-2);">
+          <input placeholder="Ask anything — research a topic, check saturation, build a storyboard…" style="flex:1;border:0;background:transparent;font:inherit;font-size:14px;color:var(--color-text);outline:none;min-width:0;">
+          <button class="btn btn-primary btn-icon" title="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg></button>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- CHANNEL PERFORMANCE -->
+    <sc-if value="{{ isPerf }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3);margin-bottom:var(--space-6);">
+        <button class="btn btn-secondary">Re-analyse Performance</button>
+        <span style="font-size:13px;color:var(--color-neutral-700);">Last analysed: 2026-09-28 · Recent 20 vs Top 20 Shorts</span>
+      </div>
+      <h3 style="margin:0 0 var(--space-3);">Performance Comparison</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4);">
+        <sc-for list="{{ perf }}" as="pc" hint-placeholder-count="2">
+          <div data-anim="circle" style="{{ pc.style }}">
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">{{ pc.title }}</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+              <sc-for list="{{ pc.stats }}" as="st" hint-placeholder-count="4">
+                <div><div style="font-family:var(--font-heading);font-size:32px;line-height:1.05;">{{ st.v }}</div><div style="font-size:12px;margin-top:2px;">{{ st.l }}</div></div>
+              </sc-for>
+            </div>
+            <div style="font-size:13px;">Top area: <b>{{ pc.area }}</b></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:var(--space-4);padding:14px 22px;border-radius:999px;background:var(--color-accent-100);color:var(--color-accent-800);font-size:14px;display:inline-flex;">Recent Shorts average 68% fewer views than your top performers.</div>
+    </sc-if>
+
+    <!-- SUBTITLES -->
+    <sc-if value="{{ isSubs }}" hint-placeholder-val="{{ false }}">
+      <div class="seg" style="margin-bottom:var(--space-4);">
+        <label class="seg-opt"><input type="radio" name="subtab" checked="checked">Auto Transcribe</label>
+        <label class="seg-opt"><input type="radio" name="subtab">Paste Telugu Script</label>
+      </div>
+      <div style="max-width:640px;display:flex;flex-direction:column;gap:var(--space-3);">
+        <div data-anim="scale" style="border:2px dashed var(--color-accent-300);border-radius:40px;padding:var(--space-8);display:flex;flex-direction:column;align-items:flex-start;gap:10px;background:var(--color-accent-100);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-700)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+          <div style="font-family:var(--font-heading);font-size:20px;color:var(--color-accent-800);">Drop a Telugu MP3 here</div>
+          <div style="font-size:13px;color:var(--color-accent-800);">We'll transcribe it and generate an English SRT subtitle file.</div>
+          <button class="btn btn-primary" style="margin-top:6px;">Browse files</button>
+        </div>
+        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+          <button class="btn btn-secondary">Review Subtitles</button>
+          <button class="btn btn-secondary">Subtitle Video Generator</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- SETTINGS -->
+    <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);max-width:720px;">
+        <sc-for list="{{ settings }}" as="sec" hint-placeholder-count="5">
+          <div data-anim="up" style="background:var(--color-surface);border-radius:32px;padding:var(--space-4) var(--space-6) var(--space-6);display:flex;flex-direction:column;gap:var(--space-3);">
+            <h4 style="margin:0;">{{ sec.name }}</h4>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-3);">
+              <sc-for list="{{ sec.fields }}" as="f" hint-placeholder-count="2">
+                <div class="field"><label>{{ f.label }}</label><input class="input" type="{{ f.type }}" value="{{ f.value }}" style="background:var(--color-bg);"></div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <div style="display:flex;gap:var(--space-2);"><button class="btn btn-primary">Save Settings</button><button class="btn btn-secondary" onClick="{{ goHome }}">Cancel</button></div>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;input&quot;,&quot;idea_selection&quot;,&quot;history&quot;,&quot;bookmarks&quot;,&quot;approval&quot;,&quot;generating&quot;,&quot;done&quot;,&quot;chat&quot;,&quot;channel_performance&quot;,&quot;subtitles_upload&quot;,&quot;settings&quot;],&quot;default&quot;:&quot;input&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;full&quot;,&quot;subtle&quot;,&quot;off&quot;],&quot;default&quot;:&quot;full&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showProgress&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { screen: null };
+  rootRef = React.createRef(); overlayRef = React.createRef();
+  motion() {
+    if (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches) return 'off';
+    return this.props.motion ?? 'full';
+  }
+  componentDidMount() { this.animateIn(); }
+  componentDidUpdate(pp, ps) { if (ps.screen !== this.state.screen || pp.startScreen !== this.props.startScreen) this.animateIn(); }
+  animateIn() {
+    const root = this.rootRef.current; if (!root) return;
+    const m = this.motion(); if (m === 'off') return;
+    const k = m === 'subtle' ? 0.5 : 1, ease = 'cubic-bezier(.2,.8,.2,1)';
+    root.querySelectorAll('[data-anim]').forEach((el, i) => {
+      const t = el.dataset.anim, delay = Math.min(i * 45, 700);
+      let kf, dur = 800;
+      if (t === 'word') kf = [{ opacity: 0, transform: `translateY(${40 * k}px)`, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, transform: 'none', clipPath: 'inset(0 0 0 0)' }];
+      else if (t === 'circle') { kf = [{ transform: 'scale(0)' }, { transform: 'scale(1)' }]; dur = 1100; }
+      else if (t === 'scale') kf = [{ opacity: 0, transform: `scale(${1 - 0.08 * k})` }, { opacity: 1, transform: 'none' }];
+      else if (t === 'pop') kf = [{ opacity: 0, transform: `scale(${1 - 0.3 * k}) translateY(${12 * k}px)` }, { opacity: 1, transform: 'none' }];
+      else kf = [{ opacity: 0, transform: `translateY(${36 * k}px)` }, { opacity: 1, transform: 'none' }];
+      el.animate(kf, { duration: dur, delay, easing: ease, fill: 'backwards' });
+    });
+  }
+  goTo = (s, e) => {
+    const ov = this.overlayRef.current, root = this.rootRef.current;
+    const cur = this.state.screen || this.props.startScreen || 'input';
+    if (s === cur) return;
+    if (this.motion() === 'off' || !ov || !root) { this.setState({ screen: s }); return; }
+    const r = root.getBoundingClientRect();
+    const x = e && e.clientX != null ? e.clientX - r.left : r.width / 2, y = e && e.clientY != null ? e.clientY - r.top : 200;
+    const a = ov.animate([{ clipPath: `circle(0% at ${x}px ${y}px)` }, { clipPath: `circle(150% at ${x}px ${y}px)` }], { duration: 520, easing: 'cubic-bezier(.7,0,.3,1)', fill: 'forwards' });
+    a.onfinish = () => this.setState({ screen: s }, () => {
+      const b = ov.animate([{ clipPath: 'circle(150% at 50% 0%)' }, { clipPath: 'circle(0% at 50% 0%)' }], { duration: 560, delay: 60, easing: 'cubic-bezier(.7,0,.3,1)', fill: 'forwards' });
+      b.onfinish = () => { a.cancel(); b.cancel(); };
+    });
+  };
+  renderVals() {
+    const screen = this.state.screen || this.props.startScreen || 'input';
+    const go = (s) => (e) => this.goTo(s, e);
+    const list = [
+      ['input','Home'],['idea_selection','Choose Idea'],['history','Ideas Archive'],['bookmarks','Saved Ideas'],
+      ['approval','Creative Review'],['generating','Pipeline'],['done','Short Ready'],['chat','Creative Studio'],
+      ['channel_performance','Channel Performance'],['subtitles_upload','Subtitles'],['settings','Settings']];
+    const screens = list.map(([id,label]) => ({ label, go: go(id), style: `font:600 12px var(--font-body);padding:5px 12px;border-radius:999px;cursor:pointer;border:1px solid ${screen===id?'var(--color-accent)':'color-mix(in srgb, var(--color-neutral-100) 25%, transparent)'};background:${screen===id?'var(--color-accent)':'transparent'};color:var(--color-neutral-100);` }));
+    const headers = {
+      idea_selection: ['Choose Your Idea','Fresh ideas — saturation-checked against YouTube · pick one to turn into a viral Short'],
+      history: ['Ideas Archive','128 ideas · browse, reuse or storyboard any past idea'],
+      bookmarks: ['Saved Ideas','14 bookmarked · your curated collection for later'],
+      approval: ['Creative Review','The AI found the freshest angle — approve to generate your storyboard & script, or reject to try again'],
+      generating: ['Production Pipeline',"Generating storyboard & Telugu script for: Why Konark's Wheels Still Tell the Exact Time"],
+      done: ['Your Short is Ready!','Storyboard + Telugu script generated — download and create your viral Short'],
+      chat: ['Creative Studio','Chat · research · check saturation · build storyboards — all in one place'],
+      channel_performance: ['Channel Performance','Recent Shorts vs All-Time High Performers · @yourchannel'],
+      subtitles_upload: ['Generate Subtitles','Upload a Telugu MP3 and generate an English SRT subtitle file'],
+      settings: ['Settings','Configure API keys, LLM models, channel URL and integrations'],
+    };
+    const h = headers[screen] || ['',''];
+    const PH = ['input','idea_selection','research','approval','generating','done'];
+    const pi = Math.max(0, PH.indexOf(screen));
+    const ideas = [
+      { area:'history', sat:'Low saturation', title:"Why Konark's Wheels Still Tell the Exact Time", concept:'The 24 stone wheels of the Konark Sun Temple are working sundials — each spoke\u2019s shadow reads the hour to within minutes.', hook:'This temple wheel is a clock that has never needed a battery.' },
+      { area:'space', sat:'Low saturation', title:"Voyager's Golden Record Is Still Playing to No One", concept:'A gold-plated record carrying 55 greetings and 90 minutes of music has been drifting past the edge of the solar system since 1977.', hook:'There is a song from Earth 24 billion km away right now.' },
+      { area:'technology', sat:'Med saturation', title:'The Sound That Gives Cricket Umpires X-Ray Ears', concept:'UltraEdge syncs stump-mic audio with high-speed video so a faint nick becomes a visible spike on screen.', hook:'One tiny sound decides crores of rupees on the field.' },
+      { area:'nature', sat:'Low saturation', title:'The Fungus That Turns Ants Into Zombies', concept:'Ophiocordyceps takes over an ant\u2019s muscles, marches it up a leaf at noon, and locks its jaws before bursting out.', hook:'This ant is not in control of its own body.' },
+    ];
+    const tools = [
+      ['Check Saturation','Is this idea already crowded?','saturation'],['Browse History','128 past ideas','history'],['Bookmarks','14 saved','bookmarks'],
+      ["Let's Build Together",'Chat with the AI','chat'],['Analyze Public Interest','Last run 2026-09-30',null],['My Channel Analysis','86 Shorts analysed',null],
+      ['View Ready Boards (12)','Past storyboards',null],['Channel Performance','Last run 2026-09-28','channel_performance'],
+      ['Generate Subtitles','Telugu MP3 → English SRT','subtitles_upload'],['Settings','Keys, models, channel','settings']
+    ].map(([label,meta,s]) => ({ label, meta, go: s ? go(s==='saturation'?'approval':s) : () => {} }));
+    const settings = [
+      { name:'API Keys', fields:[['OpenAI API Key','password','sk-••••••••'],['Anthropic API Key','password','sk-ant-••••'],['YouTube Data API Key','password','AIza••••'],['Tavily Search API Key','password','tvly-••••'],['Google AI Studio API Key','password','AIza••••']] },
+      { name:'LLM Models', fields:[['Fast / Cheap Model','text','gpt-4o-mini'],['Quality / Reasoning Model','text','claude-sonnet'],['LLM Provider','text','auto']] },
+      { name:'Local LLM (Ollama)', fields:[['Ollama Model','text','qwen3.5:9b'],['Ollama Base URL','text','http://localhost:11434']] },
+      { name:'Integrations', fields:[['OpenSERP Base URL','text','http://localhost:7000']] },
+      { name:'Channel', fields:[['YouTube Channel URL','text','https://youtube.com/@yourchannel'],['Channel Language','text','Telugu']] },
+    ].map(s => ({ name:s.name, fields:s.fields.map(([label,type,value]) => ({label,type,value})) }));
+    const bubble = (me) => `max-width:85%;padding:14px 20px;border-radius:28px;font-size:14px;line-height:1.55;${me?'align-self:flex-end;background:var(--color-accent);color:var(--color-bg);border-bottom-right-radius:8px;':'align-self:flex-start;background:var(--color-surface);border-bottom-left-radius:8px;'}`;
+    const dot = (c) => `width:12px;height:12px;border-radius:50%;background:${c};flex:none;`;
+    const isList = ['idea_selection','history','bookmarks'].includes(screen);
+    return {
+      rootRef: this.rootRef, overlayRef: this.overlayRef,
+      showBar: this.props.showBar ?? true, screens, progress: `${Math.round(pi/(PH.length-1)*100)}%`, showProgress: this.props.showProgress ?? true,
+      isHome: screen==='input', notHome: screen!=='input', hdr: { title:h[0], sub:h[1] },
+      isIdeaList: isList, isIdeas: screen==='idea_selection', isArchive: screen==='history',
+      isReview: screen==='approval', isPipeline: screen==='generating', isDone: screen==='done',
+      isChat: screen==='chat', isPerf: screen==='channel_performance', isSubs: screen==='subtitles_upload', isSettings: screen==='settings',
+      listCaption: screen==='idea_selection' ? '4 ideas generated — pick one, blacklist unwanted ones, or generate 5 more.' : screen==='history' ? '128 ideas · page 1 of 9' : '14 bookmarks · page 1 of 1',
+      primaryAction: screen==='idea_selection' ? 'Select' : 'Storyboard',
+      ideas: screen==='bookmarks' ? ideas.slice(1,3) : ideas,
+      topics: ['History','Science','Latest Science News','Geography','Nature','Space','Technology','Interesting Events','Inspiring People','Archaeology News','Aviation Reports','Research Papers','World Cultures','Hidden Mechanisms','Surprising Facts','Unknown Facts'],
+      tools, settings,
+      pipeline: [
+        { name:'Image Prompt Agent', state:'complete', detail:'5 scenes planned · 45s total', dotStyle: dot('var(--color-accent-2-600)') },
+        { name:'Telugu Script Agent', state:'complete', detail:'Telugu script ready', dotStyle: dot('var(--color-accent-2-600)') },
+      ],
+      scenes: [
+        ['01','8s','Dawn breaks over the Konark Sun Temple in Odisha.','Wide shot, golden sunrise behind the Konark temple, mist, cinematic, 9:16'],
+        ['02','10s','Its 24 giant stone wheels look like decoration — they are not.','Close-up of a carved Konark wheel, warm sidelight, deep shadows'],
+        ['03','9s','Each spoke casts a shadow that marks the hour.','Spoke shadow moving across carved beads, timelapse feel'],
+        ['04','10s','Priests read the time to within minutes, 800 years ago.','Ancient priest pointing at the wheel, soft painterly style'],
+        ['05','8s','Follow for more secrets hidden in plain sight.','Temple silhouette at dusk, title space at top'],
+      ].map(([n,dur,narr,prompt]) => ({n,dur,narr,prompt})),
+      script: [
+        'Odisha lo Konark Surya devalayam meeda suryodayam…',
+        'Ee 24 rathi chakralu kevalam alankaram kaadu.',
+        'Prathi aaku needa okka samayaanni chuputhundi.',
+        '800 samvatsarala kritame pujarulu nimishaala kachithanga samayam cheppevaru.',
+        'Ilanti rahasyala kosam follow avvandi!',
+      ].map((t,i) => ({ n:i+1, t })),
+      chat: [
+        { text:'Find me a space idea nobody in Telugu Shorts has covered.', style: bubble(true) },
+        { text:"Voyager's Golden Record scores low saturation — only 2 Telugu Shorts in the last 90 days, both under 5K views. Want me to research it or build the storyboard?", style: bubble(false) },
+        { text:'Research it first.', style: bubble(true) },
+      ],
+      perf: [
+        { title:'Recent 20 Shorts', area:'technology', style:'background:var(--color-accent-100);color:var(--color-accent-900);border-radius:36px;padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-4);', stats:[{v:'4.2K',l:'avg views'},{v:'186',l:'avg likes'},{v:'4.4%',l:'engagement'},{v:'21.0K',l:'best video'}] },
+        { title:'Top 20 Performers', area:'history', style:'background:var(--color-accent-2-200);color:var(--color-accent-2-900);border-radius:36px;padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-4);', stats:[{v:'13.1K',l:'avg views'},{v:'742',l:'avg likes'},{v:'5.7%',l:'engagement'},{v:'96.4K',l:'best video'}] },
+      ],
+      goHome: go('input'), goIdeas: go('idea_selection'), goReview: go('approval'), goResearch: go('approval'),
+      goPipeline: go('generating'), goDone: go('done'),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-739c0fe9-560b-46cc-84ff-5ef593125628/styles.css">
+<script src="_ds/organic-739c0fe9-560b-46cc-84ff-5ef593125628/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:var(--color-bg);overflow-x:hidden;}
+:root{--color-bg:#ffffff;--color-surface:#f3f2f7;--color-text:#0f0f14;--color-accent:#e60030;--color-accent-2:#1877f2;--color-divider:color-mix(in srgb,#0f0f14 14%,transparent);
+--color-neutral-100:#f7f7fa;--color-neutral-200:#ececf2;--color-neutral-300:#d8d8e2;--color-neutral-400:#b4b4c2;--color-neutral-500:#8e8e9e;--color-neutral-600:#6c6c7c;--color-neutral-700:#53535f;--color-neutral-800:#383843;--color-neutral-900:#16161d;
+--color-accent-100:#ffeef0;--color-accent-200:#ffd6dc;--color-accent-300:#ffa3b1;--color-accent-400:#ff6680;--color-accent-500:#ff2d52;--color-accent-600:#c4002a;--color-accent-700:#a30024;--color-accent-800:#75001a;--color-accent-900:#4a0010;
+--color-accent-2-100:#eaf2ff;--color-accent-2-200:#d2e3fd;--color-accent-2-300:#a6c8fb;--color-accent-2-400:#6ba4f7;--color-accent-2-500:#3d8af5;--color-accent-2-600:#1466d6;--color-accent-2-700:#0f52b0;--color-accent-2-800:#0b3c82;--color-accent-2-900:#082856;}
+a{color:var(--color-accent-700);}
+a:hover{color:var(--color-accent-800);}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);overflow-x:hidden;">
+
+  <header style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:12px;padding:20px clamp(20px,3vw,40px);color:{{ headerColor }};transition:color .4s;pointer-events:none;">
+    <button onClick="{{ goHome }}" style="pointer-events:auto;margin-right:auto;background:none;border:0;padding:0;cursor:pointer;color:inherit;font-family:var(--font-heading);font-size:26px;line-height:1;">Shorts <span style="color:var(--color-accent);">AI</span></button>
+    <button class="btn btn-primary" onClick="{{ goStart }}" style="pointer-events:auto;min-height:44px;padding-inline:22px;">Get started</button>
+    <button onClick="{{ toggleMenu }}" style="pointer-events:auto;min-height:44px;padding:0 22px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer;font-family:var(--font-heading);font-size:14px;display:inline-flex;align-items:center;gap:10px;">
+      <span style="display:flex;flex-direction:column;gap:4px;"><span style="width:16px;height:2.5px;border-radius:2px;background:currentColor;"></span><span style="width:10px;height:2.5px;border-radius:2px;background:currentColor;"></span></span>{{ menuLabel }}
+    </button>
+  </header>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div data-reveal="menu" style="position:fixed;inset:0;z-index:40;background:var(--color-accent-2-800);color:var(--color-bg);display:flex;flex-direction:column;justify-content:flex-end;padding:120px clamp(20px,3vw,40px) 40px;gap:40px;">
+      <nav style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:4px 48px;">
+        <sc-for list="{{ navItems }}" as="nv" hint-placeholder-count="6">
+          <span style="display:inline-block;overflow:hidden;justify-self:start;"><a href="#" onClick="{{ nv.go }}" data-reveal="word" data-delay="{{ nv.delay }}" style="display:inline-flex;align-items:baseline;gap:16px;color:var(--color-bg);text-decoration:none;font-family:var(--font-heading);font-size:clamp(40px,6vw,92px);line-height:1.05;" style-hover="color:var(--color-accent-300);"><span style="font-family:var(--font-body);font-size:14px;font-weight:700;opacity:0.6;">{{ nv.n }}</span>{{ nv.label }}</a></span>
+        </sc-for>
+      </nav>
+      <div data-reveal="up" data-delay="500" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;font-size:14px;">
+        <a href="https://github.com/kvrsampath538/short_videos" style="color:var(--color-bg);">github.com/kvrsampath538/short_videos</a>
+        <span style="margin-left:auto;display:flex;gap:10px;">
+          <span title="YouTube Shorts" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--color-accent-2-400);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg></span>
+          <span title="Instagram Reels" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--color-accent-2-400);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></span>
+          <span title="TikTok" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--color-accent-2-400);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V3c.5 2.5 2.5 4.5 5 5"></path></svg></span>
+          <span title="Facebook Reels" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--color-accent-2-400);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></span>
+        </span>
+      </div>
+    </div>
+  </sc-if>
+
+  <div ref="{{ overlayRef }}" style="position:fixed;inset:0;z-index:60;pointer-events:none;background:var(--color-accent);color:var(--color-bg);display:flex;align-items:center;justify-content:center;clip-path:circle(0% at 50% 50%);font-family:var(--font-heading);font-size:clamp(48px,9vw,140px);">{{ transLabel }}</div>
+
+  <sc-if value="{{ showCursor }}" hint-placeholder-val="{{ false }}">
+    <div ref="{{ cursorRef }}" style="position:fixed;left:0;top:0;width:16px;height:16px;border-radius:50%;background:var(--color-accent);mix-blend-mode:multiply;pointer-events:none;z-index:70;opacity:0.85;"></div>
+  </sc-if>
+
+  <!-- ═════════ HOME ═════════ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Home hero" style="min-height:100vh;padding:140px clamp(20px,3vw,40px) 56px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:40px;">
+      <div data-reveal="circle" style="position:absolute;right:-14vw;top:6vh;width:min(60vw,760px);aspect-ratio:1;"><div data-parallax="0.18" style="width:100%;height:100%;border-radius:50%;background:linear-gradient(45deg,#feda75,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5);"></div></div>
+      <div data-reveal="circle" data-delay="200" style="position:absolute;right:34vw;top:18vh;width:min(14vw,180px);aspect-ratio:1;"><div data-parallax="-0.25" style="width:100%;height:100%;border-radius:50%;background:var(--color-accent-2-400);"></div></div>
+      <div style="position:absolute;right:clamp(20px,6vw,90px);top:clamp(110px,18vh,200px);width:150px;height:150px;color:var(--color-bg);">
+        <svg data-spin="1" width="150" height="150" viewBox="0 0 150 150" style="position:absolute;inset:0;"><defs><path id="badge" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"></path></defs><text font-family="Figtree, sans-serif" font-size="13" font-weight="700" letter-spacing="3.2" fill="currentColor"><textPath href="#badge">OPEN SOURCE · TELUGU SHORTS · TEN AGENTS ·</textPath></text></svg>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:59px;top:59px;"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+      </div>
+
+      <h1 style="position:relative;margin:0;font-size:clamp(56px,10.5vw,176px);line-height:0.94;letter-spacing:-0.03em;display:flex;flex-direction:column;">
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;">
+          <span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="0" style="display:inline-block;">Idea</span></span>
+          <span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="80" style="display:inline-block;">to</span></span>
+        </span>
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;">
+          <span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="160" style="display:inline-block;">viral</span></span>
+          <span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="240" style="display:inline-block;">Short,</span></span>
+        </span>
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;">
+          <span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="320" style="display:inline-block;">on</span></span>
+          <span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="400" style="display:inline-block;color:var(--color-accent-2-700);">autopilot.</span></span>
+        </span>
+      </h1>
+
+      <div style="position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px 48px;">
+        <p data-reveal="up" data-delay="550" style="margin:0;max-width:40ch;font-size:clamp(16px,1.3vw,19px);line-height:1.55;text-wrap:pretty;">An open-source Streamlit studio where ten AI agents find a story nobody has told, check it against live YouTube, and hand you a storyboard and a Telugu script.</p>
+        <div data-reveal="up" data-delay="650" style="display:flex;flex-wrap:wrap;gap:10px;">
+          <button class="btn btn-primary" onClick="{{ goStart }}" style="min-height:52px;padding-inline:28px;font-size:16px;">Get started</button>
+          <button class="btn btn-secondary" onClick="{{ goFeatures }}" style="min-height:52px;padding-inline:28px;font-size:16px;">See features</button>
+        </div>
+        <div data-reveal="up" data-delay="750" style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+          <span style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-neutral-700);">Made for</span>
+          <span title="YouTube Shorts" style="width:44px;height:44px;border-radius:50%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg></span>
+          <span title="Instagram Reels" style="width:44px;height:44px;border-radius:50%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></span>
+          <span title="TikTok" style="width:44px;height:44px;border-radius:50%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V3c.5 2.5 2.5 4.5 5 5"></path></svg></span>
+          <span title="Facebook Reels" style="width:44px;height:44px;border-radius:50%;background:var(--color-surface);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></span>
+        </div>
+      </div>
+    </section>
+
+    <div style="background:var(--color-accent-2-700);color:var(--color-bg);padding:30px 0;overflow:hidden;">
+      <div data-marquee="1" style="display:flex;width:max-content;align-items:center;gap:40px;font-family:var(--font-heading);font-size:clamp(40px,5vw,72px);line-height:1;white-space:nowrap;">
+        <span>Idea</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span><span>Research</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span><span>Freshness</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span><span>Storyboard</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span><span>Telugu Script</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span>
+        <span>Idea</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span><span>Research</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span><span>Freshness</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span><span>Storyboard</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span><span>Telugu Script</span><span style="width:18px;height:18px;border-radius:50%;background:var(--color-accent-300);"></span>
+      </div>
+    </div>
+
+    <section data-screen-label="How it works" style="padding:clamp(80px,12vw,160px) clamp(20px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:48px clamp(32px,6vw,96px);align-items:start;">
+      <div style="position:sticky;top:120px;display:flex;flex-direction:column;gap:16px;">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(44px,5.5vw,84px);line-height:0.98;">How it works</h2>
+        <p data-reveal="up" data-delay="100" style="margin:0;max-width:32ch;font-size:16px;color:var(--color-neutral-800);">Five steps, one click each. You stay in charge — nothing is generated until you approve the idea.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:56px;grid-column:span 2;min-width:0;">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+          <div data-reveal="up" style="display:flex;gap:clamp(20px,3vw,40px);align-items:flex-start;">
+            <div style="{{ s.circle }}">{{ s.n }}</div>
+            <div style="display:flex;flex-direction:column;gap:8px;padding-top:12px;min-width:0;">
+              <h3 style="margin:0;font-size:clamp(28px,3vw,40px);">{{ s.title }}</h3>
+              <p style="margin:0;max-width:46ch;font-size:17px;line-height:1.55;color:var(--color-neutral-800);">{{ s.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section data-screen-label="Demo" style="padding:0 clamp(20px,3vw,40px) clamp(80px,10vw,140px);">
+      <div data-reveal="scale" style="position:relative;border-radius:clamp(28px,4vw,56px);overflow:hidden;background:var(--color-surface);aspect-ratio:16/9;max-height:84vh;width:100%;">
+        <div class="washed" style="position:absolute;inset:0;"><image-slot id="site-demo-still" shape="rect" placeholder="Drop an app screenshot or demo still"></image-slot></div>
+        <div style="position:absolute;left:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,40px);display:flex;align-items:center;gap:16px;pointer-events:none;">
+          <div style="width:clamp(72px,8vw,112px);aspect-ratio:1;border-radius:50%;background:var(--color-accent);color:var(--color-bg);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);"><svg width="34%" height="34%" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.75" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></div>
+          <div style="padding:10px 20px;border-radius:999px;background:var(--color-bg);font-family:var(--font-heading);font-size:18px;">Watch the demo</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Platforms" style="padding:0 clamp(20px,3vw,40px) clamp(80px,10vw,140px);display:flex;flex-direction:column;gap:40px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 48px;">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(40px,5vw,76px);line-height:1;max-width:14ch;">One storyboard, every vertical feed.</h2>
+        <p data-reveal="up" data-delay="100" style="margin:0;max-width:36ch;font-size:16px;color:var(--color-neutral-800);">Built for YouTube Shorts. Every scene is planned for 9:16, so the same cut posts to Reels and TikTok too.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:20px;">
+        <sc-for list="{{ platforms }}" as="p" hint-placeholder-count="4">
+          <div data-reveal="up" data-delay="{{ p.delay }}" style="{{ p.card }}">
+            <div style="{{ p.dot }}">
+              <sc-if value="{{ p.yt }}" hint-placeholder-val="{{ false }}"><svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg></sc-if>
+              <sc-if value="{{ p.ig }}" hint-placeholder-val="{{ false }}"><svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></sc-if>
+              <sc-if value="{{ p.tt }}" hint-placeholder-val="{{ false }}"><svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V3c.5 2.5 2.5 4.5 5 5"></path></svg></sc-if>
+              <sc-if value="{{ p.fb }}" hint-placeholder-val="{{ false }}"><svg width="40%" height="40%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></sc-if>
+            </div>
+            <div style="font-family:var(--font-heading);font-size:24px;line-height:1.1;">{{ p.name }}</div>
+            <div style="font-size:14px;opacity:0.85;">{{ p.note }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section data-screen-label="About" style="padding:0 clamp(20px,3vw,40px) clamp(100px,12vw,180px);display:flex;flex-direction:column;gap:24px;">
+      <span class="tag tag-accent" data-reveal="up" style="align-self:flex-start;font-size:13px;padding:6px 16px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">About</span>
+      <p data-fill-wrap="1" style="margin:0;max-width:24ch;font-family:var(--font-heading);font-size:clamp(34px,4.6vw,72px);line-height:1.12;letter-spacing:-0.015em;display:flex;flex-wrap:wrap;column-gap:0.26em;">
+        <span data-fill="1">Shorts</span><span data-fill="1" style="color:var(--color-accent);">AI</span><span data-fill="1">is</span><span data-fill="1">ten</span><span data-fill="1">small</span><span data-fill="1">agents</span><span data-fill="1">working</span><span data-fill="1">as</span><span data-fill="1">one</span><span data-fill="1">studio.</span><span data-fill="1">They</span><span data-fill="1">find</span><span data-fill="1">the</span><span data-fill="1">untold</span><span data-fill="1">story,</span><span data-fill="1">prove</span><span data-fill="1">it's</span><span data-fill="1">fresh,</span><span data-fill="1">and</span><span data-fill="1">write</span><span data-fill="1">it</span><span data-fill="1" style="color:var(--color-accent-2-700);">in</span><span data-fill="1" style="color:var(--color-accent-2-700);">Telugu.</span>
+      </p>
+    </section>
+  </sc-if>
+
+  <!-- ═════════ FEATURES ═════════ -->
+  <sc-if value="{{ isFeatures }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Features hero" style="padding:clamp(140px,18vh,200px) clamp(20px,3vw,40px) clamp(60px,8vw,100px);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:32px;">
+      <div data-reveal="circle" style="position:absolute;right:-10vw;top:-10vw;width:min(46vw,600px);aspect-ratio:1;"><div data-parallax="0.2" style="width:100%;height:100%;border-radius:50%;background:var(--color-accent-2-300);"></div></div>
+      <span class="tag tag-accent-2" data-reveal="up" style="position:relative;align-self:flex-start;font-size:13px;padding:6px 16px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Features</span>
+      <h1 style="position:relative;margin:0;font-size:clamp(56px,10vw,164px);line-height:0.94;letter-spacing:-0.03em;display:flex;flex-direction:column;">
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" style="display:inline-block;">Ten</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="80" style="display:inline-block;">agents,</span></span></span>
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="160" style="display:inline-block;">one</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="240" style="display:inline-block;color:var(--color-accent);">studio.</span></span></span>
+      </h1>
+      <p data-reveal="up" data-delay="400" style="position:relative;margin:0;max-width:44ch;font-size:clamp(16px,1.3vw,19px);line-height:1.55;">Each agent does one job well. Together they cover the whole road from a blank page to a script you can record.</p>
+    </section>
+
+    <section style="padding:0 clamp(20px,3vw,40px) clamp(80px,10vw,140px);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:20px;">
+      <sc-for list="{{ agents }}" as="a" hint-placeholder-count="10">
+        <div data-reveal="up" data-delay="{{ a.delay }}" style="{{ a.card }}" style-hover="transform:translateY(-6px);box-shadow:var(--shadow-md);">
+          <div style="{{ a.num }}">{{ a.n }}</div>
+          <div style="font-family:var(--font-heading);font-size:24px;line-height:1.1;">{{ a.name }}</div>
+          <p style="margin:0;font-size:15px;line-height:1.55;">{{ a.desc }}</p>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="padding:0 clamp(20px,3vw,40px) clamp(100px,12vw,160px);display:flex;flex-direction:column;gap:24px;">
+      <h2 data-reveal="up" style="margin:0;font-size:clamp(36px,4.4vw,64px);">Also inside</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <span data-reveal="up" style="padding:16px 28px;border-radius:999px;background:var(--color-accent-100);color:var(--color-accent-800);font-size:17px;font-weight:600;">Subtitles · Telugu MP3 → English SRT</span>
+        <span data-reveal="up" data-delay="80" style="padding:16px 28px;border-radius:999px;background:var(--color-accent-2-100);color:var(--color-accent-2-800);font-size:17px;font-weight:600;">Ready Boards library</span>
+        <span data-reveal="up" data-delay="160" style="padding:16px 28px;border-radius:999px;background:var(--color-neutral-100);color:var(--color-neutral-800);font-size:17px;font-weight:600;">Local AI with Ollama · cloud fallback</span>
+        <span data-reveal="up" data-delay="240" style="padding:16px 28px;border-radius:999px;background:var(--color-accent-100);color:var(--color-accent-800);font-size:17px;font-weight:600;">Bookmarks &amp; blacklist</span>
+      </div>
+      <a href="Shorts AI Screens.dc.html" data-reveal="up" class="btn btn-secondary" style="align-self:flex-start;min-height:52px;padding-inline:28px;font-size:16px;margin-top:12px;">See the app screens
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
+    </section>
+  </sc-if>
+
+  <!-- ═════════ GET STARTED ═════════ -->
+  <sc-if value="{{ isStart }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Get started hero" style="padding:clamp(140px,18vh,200px) clamp(20px,3vw,40px) clamp(60px,8vw,100px);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:32px;">
+      <div data-reveal="circle" style="position:absolute;right:6vw;top:14vh;width:min(26vw,320px);aspect-ratio:1;"><div data-parallax="0.3" style="width:100%;height:100%;border-radius:50%;background:var(--color-accent);"></div></div>
+      <span class="tag tag-accent" data-reveal="up" style="position:relative;align-self:flex-start;font-size:13px;padding:6px 16px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Get started</span>
+      <h1 style="position:relative;margin:0;font-size:clamp(56px,10vw,164px);line-height:0.94;letter-spacing:-0.03em;display:flex;flex-direction:column;">
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" style="display:inline-block;">Run</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="80" style="display:inline-block;">it</span></span></span>
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="160" style="display:inline-block;">on</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="240" style="display:inline-block;">your</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="320" style="display:inline-block;color:var(--color-accent-2-700);">machine.</span></span></span>
+      </h1>
+    </section>
+
+    <section style="padding:0 clamp(20px,3vw,40px) clamp(100px,12vw,160px);display:flex;flex-direction:column;gap:48px;max-width:980px;">
+      <sc-for list="{{ install }}" as="i" hint-placeholder-count="5">
+        <div data-reveal="up" style="display:flex;gap:clamp(16px,3vw,36px);align-items:flex-start;">
+          <div style="{{ i.circle }}">{{ i.n }}</div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:12px;padding-top:6px;">
+            <h3 style="margin:0;font-size:clamp(24px,2.6vw,34px);">{{ i.title }}</h3>
+            <p style="margin:0;font-size:16px;color:var(--color-neutral-800);max-width:56ch;">{{ i.desc }}</p>
+            <div style="display:flex;align-items:flex-start;gap:12px;background:var(--color-neutral-900);color:var(--color-neutral-100);border-radius:28px;padding:16px 16px 16px 24px;">
+              <pre style="flex:1;min-width:0;margin:0;padding-top:8px;font-family:ui-monospace,Menlo,monospace;font-size:14px;line-height:1.6;white-space:pre-wrap;word-break:break-all;">{{ i.code }}</pre>
+              <button onClick="{{ i.copy }}" class="btn" style="flex:none;background:var(--color-neutral-800);color:var(--color-neutral-100);min-height:40px;font-size:13px;" style-hover="background:var(--color-neutral-700);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>{{ i.copyLabel }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+  </sc-if>
+
+  <!-- ═════════ STUDIO TOUR ═════════ -->
+  <sc-if value="{{ isTour }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Tour hero" style="padding:clamp(140px,18vh,200px) clamp(20px,3vw,40px) clamp(60px,8vw,100px);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:32px;">
+      <div data-reveal="circle" style="position:absolute;left:52vw;top:10vh;width:min(36vw,460px);aspect-ratio:1;"><div data-parallax="0.22" style="width:100%;height:100%;border-radius:50%;background:var(--color-accent-100);"></div></div>
+      <span class="tag tag-accent" data-reveal="up" style="position:relative;align-self:flex-start;font-size:13px;padding:6px 16px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Studio tour</span>
+      <h1 style="position:relative;margin:0;font-size:clamp(56px,10vw,164px);line-height:0.94;letter-spacing:-0.03em;display:flex;flex-direction:column;">
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" style="display:inline-block;">Step</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="80" style="display:inline-block;">inside</span></span></span>
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="160" style="display:inline-block;">the</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="240" style="display:inline-block;color:var(--color-accent);">studio.</span></span></span>
+      </h1>
+      <p data-reveal="up" data-delay="400" style="position:relative;margin:0;max-width:44ch;font-size:clamp(16px,1.3vw,19px);line-height:1.55;">Six screens, from a blank topic box to a finished Telugu script. Every one is live — click around.</p>
+    </section>
+    <section style="padding:0 clamp(20px,3vw,40px) clamp(100px,12vw,160px);display:flex;flex-direction:column;gap:clamp(80px,10vw,140px);">
+      <sc-for list="{{ tour }}" as="t" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px clamp(32px,5vw,72px);align-items:start;">
+          <div style="position:sticky;top:120px;display:flex;flex-direction:column;gap:14px;">
+            <div data-reveal="up" style="{{ t.circle }}">{{ t.n }}</div>
+            <h2 data-reveal="up" data-delay="80" style="margin:0;font-size:clamp(36px,4vw,60px);line-height:1;">{{ t.title }}</h2>
+            <p data-reveal="up" data-delay="160" style="margin:0;max-width:36ch;font-size:16px;line-height:1.55;color:var(--color-neutral-800);">{{ t.desc }}</p>
+          </div>
+          <div data-reveal="scale" style="grid-column:span 2;min-width:0;height:clamp(460px,70vh,720px);border-radius:clamp(28px,3vw,44px);overflow:hidden;border:1.5px solid var(--color-divider);background:var(--color-bg);box-shadow:var(--shadow-md);overflow-y:auto;">
+            <dc-import name="Shorts AI Screens" start-screen="{{ t.id }}" show-bar="{{ false }}" hint-size="100%,720px"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+  </sc-if>
+
+  <!-- ═════════ INSIGHTS ═════════ -->
+  <sc-if value="{{ isInsights }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Insights hero" style="padding:clamp(140px,18vh,200px) clamp(20px,3vw,40px) clamp(60px,8vw,100px);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:32px;">
+      <div data-reveal="circle" style="position:absolute;right:-8vw;top:8vh;width:min(42vw,540px);aspect-ratio:1;"><div data-parallax="0.2" style="width:100%;height:100%;border-radius:50%;background:var(--color-accent-2-700);"></div></div>
+      <span class="tag tag-accent-2" data-reveal="up" style="position:relative;align-self:flex-start;font-size:13px;padding:6px 16px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Insights</span>
+      <h1 style="position:relative;margin:0;font-size:clamp(56px,10vw,164px);line-height:0.94;letter-spacing:-0.03em;display:flex;flex-direction:column;">
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" style="display:inline-block;">Know</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="80" style="display:inline-block;">what</span></span></span>
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="160" style="display:inline-block;">works.</span></span></span>
+      </h1>
+      <p data-reveal="up" data-delay="400" style="position:relative;margin:0;max-width:40ch;font-size:clamp(16px,1.3vw,19px);line-height:1.55;">Three agents read the audience, your channel and your best Shorts — then feed it all back into the next idea.</p>
+    </section>
+
+    <section data-screen-label="Audience" style="padding:0 clamp(20px,3vw,40px) clamp(80px,10vw,140px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px clamp(32px,6vw,96px);align-items:start;">
+      <div style="position:sticky;top:120px;display:flex;flex-direction:column;gap:16px;">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(40px,5vw,76px);line-height:1;">Audience Intelligence</h2>
+        <p data-reveal="up" data-delay="100" style="margin:0;max-width:34ch;font-size:16px;color:var(--color-neutral-800);">Ranks every topic area 1–10 for the Telugu Shorts audience, so the idea generator leans into what people are watching now.</p>
+      </div>
+      <div style="grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:14px;">
+        <sc-for list="{{ areas }}" as="ar" hint-placeholder-count="8">
+          <div data-reveal="up" data-delay="{{ ar.delay }}" style="display:grid;grid-template-columns:44px minmax(0,1fr) 48px;align-items:center;gap:16px;">
+            <span style="font-family:var(--font-heading);font-size:22px;color:var(--color-neutral-700);">{{ ar.rank }}</span>
+            <div style="position:relative;height:56px;border-radius:999px;background:var(--color-surface);overflow:hidden;">
+              <div data-reveal="bar" data-delay="{{ ar.barDelay }}" style="{{ ar.bar }}"></div>
+              <span style="position:absolute;left:24px;top:50%;transform:translateY(-50%);font-weight:700;font-size:16px;color:var(--color-bg);">{{ ar.name }}</span>
+            </div>
+            <span style="font-family:var(--font-heading);font-size:22px;text-align:right;">{{ ar.score }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section data-screen-label="Performance" style="padding:0 clamp(20px,3vw,40px) clamp(100px,12vw,160px);display:flex;flex-direction:column;gap:40px;">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 48px;">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(40px,5vw,76px);line-height:1;max-width:14ch;">Recent vs your best.</h2>
+        <p data-reveal="up" data-delay="100" style="margin:0;max-width:38ch;font-size:16px;color:var(--color-neutral-800);">Channel Performance compares your last 20 Shorts with your top 20 and names the gap — topic, hook, length.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(24px,4vw,64px);">
+        <div data-reveal="circle" style="width:clamp(220px,26vw,340px);aspect-ratio:1;border-radius:50%;background:var(--color-accent-100);color:var(--color-accent-900);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;">
+          <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Recent 20</span>
+          <span style="font-family:var(--font-heading);font-size:clamp(48px,6vw,84px);line-height:1;">4.2K</span>
+          <span style="font-size:14px;">avg views · technology</span>
+        </div>
+        <span data-reveal="up" data-delay="300" style="font-family:var(--font-heading);font-size:clamp(28px,3vw,44px);color:var(--color-neutral-700);">vs</span>
+        <div data-reveal="circle" data-delay="200" style="width:clamp(280px,34vw,460px);aspect-ratio:1;border-radius:50%;background:var(--color-accent-2-700);color:var(--color-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;">
+          <span style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Top 20</span>
+          <span style="font-family:var(--font-heading);font-size:clamp(64px,8vw,120px);line-height:1;">13.1K</span>
+          <span style="font-size:14px;">avg views · history</span>
+        </div>
+      </div>
+      <div data-reveal="up" style="align-self:flex-start;padding:16px 28px;border-radius:999px;background:var(--color-accent);color:var(--color-bg);font-size:17px;font-weight:600;">Your history Shorts pull 3× the views — the next ideas will lean that way.</div>
+    </section>
+  </sc-if>
+
+  <!-- ═════════ SUBTITLES ═════════ -->
+  <sc-if value="{{ isSubs }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Subtitles hero" style="padding:clamp(140px,18vh,200px) clamp(20px,3vw,40px) clamp(60px,8vw,100px);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:32px;">
+      <div data-reveal="circle" style="position:absolute;right:10vw;top:12vh;width:min(22vw,280px);aspect-ratio:1;"><div data-parallax="0.3" style="width:100%;height:100%;border-radius:50%;background:var(--color-accent-2-300);"></div></div>
+      <div data-reveal="circle" data-delay="150" style="position:absolute;right:-6vw;top:34vh;width:min(30vw,380px);aspect-ratio:1;"><div data-parallax="-0.15" style="width:100%;height:100%;border-radius:50%;background:var(--color-accent);"></div></div>
+      <span class="tag tag-accent" data-reveal="up" style="position:relative;align-self:flex-start;font-size:13px;padding:6px 16px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Subtitles</span>
+      <h1 style="position:relative;margin:0;font-size:clamp(56px,10vw,164px);line-height:0.94;letter-spacing:-0.03em;display:flex;flex-direction:column;">
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" style="display:inline-block;">Telugu</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="80" style="display:inline-block;">in.</span></span></span>
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="160" style="display:inline-block;">English</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="240" style="display:inline-block;color:var(--color-accent-2-700);">out.</span></span></span>
+      </h1>
+      <p data-reveal="up" data-delay="400" style="position:relative;margin:0;max-width:40ch;font-size:clamp(16px,1.3vw,19px);line-height:1.55;">Upload your recorded voice-over and get a timed English SRT — or burn it straight into the video.</p>
+    </section>
+
+    <section style="padding:0 clamp(20px,3vw,40px) clamp(80px,10vw,140px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px;">
+      <sc-for list="{{ subSteps }}" as="ss" hint-placeholder-count="3">
+        <div data-reveal="up" data-delay="{{ ss.delay }}" style="{{ ss.card }}">
+          <div style="{{ ss.circle }}">{{ ss.n }}</div>
+          <div style="font-family:var(--font-heading);font-size:28px;line-height:1.1;">{{ ss.title }}</div>
+          <p style="margin:0;font-size:15px;line-height:1.55;">{{ ss.desc }}</p>
+        </div>
+      </sc-for>
+    </section>
+
+    <section data-screen-label="SRT sample" style="padding:0 clamp(20px,3vw,40px) clamp(100px,12vw,160px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px clamp(32px,6vw,96px);align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(40px,5vw,72px);line-height:1;">Timed to the word.</h2>
+        <p data-reveal="up" data-delay="100" style="margin:0;max-width:34ch;font-size:16px;color:var(--color-neutral-800);">Review every line before export. Paste your Telugu script instead if you'd rather skip transcription.</p>
+      </div>
+      <div data-reveal="scale" style="grid-column:span 2;min-width:0;background:var(--color-neutral-900);color:var(--color-neutral-100);border-radius:40px;padding:clamp(24px,3vw,44px);display:flex;flex-direction:column;gap:22px;font-family:ui-monospace,Menlo,monospace;font-size:15px;line-height:1.6;">
+        <span style="font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-300);">konark_wheels.srt</span>
+        <sc-for list="{{ srt }}" as="ln" hint-placeholder-count="4">
+          <div data-reveal="up" data-delay="{{ ln.delay }}" style="display:flex;flex-direction:column;gap:2px;">
+            <span style="color:var(--color-neutral-500);">{{ ln.n }}</span>
+            <span style="color:var(--color-accent-2-300);">{{ ln.time }}</span>
+            <span>{{ ln.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ═════════ SHARED CTA + FOOTER ═════════ -->
+  <footer data-screen-label="CTA footer" style="position:relative;overflow:hidden;background:var(--color-neutral-900);color:var(--color-neutral-100);padding:clamp(100px,12vw,180px) clamp(20px,3vw,40px) 40px;display:flex;flex-direction:column;gap:clamp(60px,8vw,120px);border-radius:clamp(32px,5vw,72px) clamp(32px,5vw,72px) 0 0;">
+    <div data-reveal="circle" style="position:absolute;left:-8vw;bottom:-14vw;width:min(40vw,520px);aspect-ratio:1;"><div data-parallax="0.15" style="width:100%;height:100%;border-radius:50%;background:var(--color-accent-2-800);"></div></div>
+    <div style="position:relative;display:flex;flex-direction:column;gap:32px;">
+      <h2 style="margin:0;font-size:clamp(52px,9vw,150px);line-height:0.95;letter-spacing:-0.03em;display:flex;flex-direction:column;">
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" style="display:inline-block;">Make</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="80" style="display:inline-block;">your</span></span></span>
+        <span style="display:flex;flex-wrap:wrap;column-gap:0.22em;"><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="160" style="display:inline-block;">next</span></span><span style="display:inline-block;overflow:hidden;padding-bottom:0.06em;"><span data-reveal="word" data-delay="240" style="display:inline-block;color:var(--color-accent-400);">Short.</span></span></span>
+      </h2>
+      <div data-reveal="up" data-delay="350" style="display:flex;flex-wrap:wrap;gap:12px;">
+        <button class="btn btn-primary" onClick="{{ goStart }}" style="min-height:56px;padding-inline:32px;font-size:17px;">Get started</button>
+        <a class="btn" href="https://github.com/kvrsampath538/short_videos" style="min-height:56px;padding-inline:28px;font-size:17px;color:var(--color-neutral-100);border:1.5px solid var(--color-neutral-600);" style-hover="background:var(--color-neutral-800);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>Star on GitHub</a>
+      </div>
+    </div>
+    <div style="position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;font-size:14px;color:var(--color-neutral-400);">
+      <span style="font-family:var(--font-heading);font-size:22px;color:var(--color-neutral-100);">Shorts <span style="color:var(--color-accent-400);">AI</span></span>
+      <a href="#" onClick="{{ goHome }}" style="color:var(--color-neutral-300);text-decoration:none;" style-hover="color:var(--color-accent-300);">Home</a>
+      <a href="#" onClick="{{ goFeatures }}" style="color:var(--color-neutral-300);text-decoration:none;" style-hover="color:var(--color-accent-300);">Features</a>
+      <a href="#" onClick="{{ goTour }}" style="color:var(--color-neutral-300);text-decoration:none;" style-hover="color:var(--color-accent-300);">Studio tour</a>
+      <a href="#" onClick="{{ goInsights }}" style="color:var(--color-neutral-300);text-decoration:none;" style-hover="color:var(--color-accent-300);">Insights</a>
+      <a href="#" onClick="{{ goSubs }}" style="color:var(--color-neutral-300);text-decoration:none;" style-hover="color:var(--color-accent-300);">Subtitles</a>
+      <a href="#" onClick="{{ goStart }}" style="color:var(--color-neutral-300);text-decoration:none;" style-hover="color:var(--color-accent-300);">Get started</a>
+      <span style="margin-left:auto;display:flex;gap:10px;color:var(--color-neutral-200);">
+        <span title="YouTube Shorts" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--color-neutral-700);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg></span>
+        <span title="Instagram Reels" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--color-neutral-700);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></span>
+        <span title="TikTok" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--color-neutral-700);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V3c.5 2.5 2.5 4.5 5 5"></path></svg></span>
+        <span title="Facebook Reels" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--color-neutral-700);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></span>
+      </span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;full&quot;,&quot;subtle&quot;,&quot;off&quot;],&quot;default&quot;:&quot;full&quot;,&quot;tsType&quot;:&quot;'full'|'subtle'|'off'&quot;},&quot;cursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'home', menuOpen: false, transLabel: '', copied: -1 };
+  rootRef = React.createRef(); overlayRef = React.createRef(); cursorRef = React.createRef();
+  anims = new Map();
+
+  motion() {
+    if (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches) return 'off';
+    return this.props.motion ?? 'full';
+  }
+
+  componentDidMount() {
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        (this.anims.get(e.target) || []).forEach((a) => a.play());
+        this.anims.delete(e.target); this.io.unobserve(e.target);
+      });
+    }, { threshold: 0.12 });
+    this.setup();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    window.addEventListener('mousemove', this.onMove);
+    this.cx = innerWidth / 2; this.cy = innerHeight / 2; this.mx = this.cx; this.my = this.cy; this.cs = 1;
+    this.loop = () => { this.tick(); this.rafLoop = requestAnimationFrame(this.loop); };
+    this.rafLoop = requestAnimationFrame(this.loop);
+  }
+  componentDidUpdate(pp, ps) {
+    if (ps.page !== this.state.page || ps.menuOpen !== this.state.menuOpen || pp.motion !== this.props.motion) this.setup();
+  }
+  componentWillUnmount() {
+    this.io && this.io.disconnect();
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    window.removeEventListener('mousemove', this.onMove);
+    cancelAnimationFrame(this.rafLoop);
+  }
+
+  setup() {
+    const root = this.rootRef.current; if (!root) return;
+    const m = this.motion(); const amt = m === 'subtle' ? 0.5 : 1;
+    root.querySelectorAll('[data-reveal]:not([data-armed])').forEach((el) => {
+      el.setAttribute('data-armed', '1');
+      if (m === 'off') return;
+      const t = el.dataset.reveal, d = +(el.dataset.delay || 0);
+      let kf, dur = 900;
+      if (t === 'word') kf = [{ transform: `translateY(${110 * amt}%)` }, { transform: 'translateY(0)' }];
+      else if (t === 'scale') kf = [{ opacity: 0, transform: `scale(${1 - 0.12 * amt})` }, { opacity: 1, transform: 'scale(1)' }];
+      else if (t === 'bar') { el.style.transformOrigin = 'left center'; kf = [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }]; dur = 1200; }
+      else if (t === 'circle') { kf = [{ transform: 'scale(0)' }, { transform: 'scale(1)' }]; dur = 1300; }
+      else if (t === 'menu') { kf = [{ clipPath: 'circle(0% at calc(100% - 70px) 42px)' }, { clipPath: 'circle(150% at calc(100% - 70px) 42px)' }]; dur = 750; }
+      else kf = [{ opacity: 0, transform: `translateY(${48 * amt}px)` }, { opacity: 1, transform: 'translateY(0)' }];
+      const a = el.animate(kf, { duration: dur, delay: d, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'both' });
+      a.pause();
+      const target = t === 'word' ? el.parentElement : el;
+      this.anims.set(target, [...(this.anims.get(target) || []), a]);
+      this.io.observe(target);
+    });
+    root.querySelectorAll('[data-spin]:not([data-armed]),[data-marquee]:not([data-armed])').forEach((el) => {
+      el.setAttribute('data-armed', '1');
+      if (m === 'off') return;
+      if (el.dataset.spin) el.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 18000, iterations: Infinity });
+      else el.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-50%)' }], { duration: m === 'subtle' ? 50000 : 28000, iterations: Infinity });
+    });
+    this.onScroll();
+  }
+
+  onScroll = () => {
+    if (this.rafS) return;
+    this.rafS = requestAnimationFrame(() => {
+      this.rafS = 0;
+      const root = this.rootRef.current; if (!root) return;
+      const vh = innerHeight, m = this.motion();
+      root.querySelectorAll('[data-parallax]').forEach((el) => {
+        if (m === 'off') { el.style.transform = ''; return; }
+        const r = el.parentElement.getBoundingClientRect();
+        const c = r.top + r.height / 2 - vh / 2;
+        el.style.transform = `translateY(${-c * parseFloat(el.dataset.parallax) * (m === 'subtle' ? 0.5 : 1)}px)`;
+      });
+      root.querySelectorAll('[data-fill-wrap]').forEach((w) => {
+        const r = w.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.25)));
+        const spans = w.querySelectorAll('[data-fill]');
+        spans.forEach((s, i) => { s.style.opacity = (m === 'off' || i / spans.length < p) ? '1' : '0.16'; s.style.transition = 'opacity .35s'; });
+      });
+    });
+  };
+
+  onMove = (e) => {
+    this.mx = e.clientX; this.my = e.clientY;
+    const t = e.target;
+    this.hov = !!(t && t.closest && t.closest('button,a'));
+  };
+  tick() {
+    const el = this.cursorRef.current; if (!el) return;
+    this.cx += (this.mx - this.cx) * 0.2; this.cy += (this.my - this.cy) * 0.2;
+    this.cs += ((this.hov ? 3.4 : 1) - this.cs) * 0.18;
+    el.style.transform = `translate(${this.cx - 8}px,${this.cy - 8}px) scale(${this.cs})`;
+  }
+
+  go = (page) => (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const labels = { home: 'Home', features: 'Features', tour: 'Studio tour', insights: 'Insights', subs: 'Subtitles', start: 'Get started' };
+    if (page === this.state.page) { this.setState({ menuOpen: false }); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    const ov = this.overlayRef.current;
+    if (this.motion() === 'off' || !ov) { this.setState({ page, menuOpen: false }); window.scrollTo(0, 0); return; }
+    const x = e && e.clientX != null ? e.clientX : innerWidth / 2, y = e && e.clientY != null ? e.clientY : innerHeight / 2;
+    this.setState({ transLabel: labels[page] });
+    const a = ov.animate([{ clipPath: `circle(0% at ${x}px ${y}px)` }, { clipPath: `circle(150% at ${x}px ${y}px)` }], { duration: 700, easing: 'cubic-bezier(.7,0,.3,1)', fill: 'forwards' });
+    a.onfinish = () => {
+      this.setState({ page, menuOpen: false }, () => {
+        window.scrollTo(0, 0);
+        const b = ov.animate([{ clipPath: 'circle(150% at 50% 0%)' }, { clipPath: 'circle(0% at 50% 0%)' }], { duration: 700, delay: 180, easing: 'cubic-bezier(.7,0,.3,1)', fill: 'forwards' });
+        b.onfinish = () => { a.cancel(); b.cancel(); };
+      });
+    };
+  };
+
+  copy = (text, i) => () => {
+    try { navigator.clipboard.writeText(text); } catch (e) {}
+    this.setState({ copied: i });
+    clearTimeout(this.copyT); this.copyT = setTimeout(() => this.setState({ copied: -1 }), 1600);
+  };
+
+  renderVals() {
+    const { page, menuOpen, copied } = this.state;
+    const circ = (bg, fg, size) => `flex:none;width:${size}px;height:${size}px;border-radius:50%;background:${bg};color:${fg};display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:${Math.round(size * 0.38)}px;`;
+    const steps = [
+      ['Idea', 'Type a topic, or let the idea generator scan sixteen areas — from archaeology news to hidden mechanisms.'],
+      ['Research', 'The research agent digs through sources and ranks the angles worth telling.'],
+      ['Freshness', 'Every idea is scored against live YouTube Shorts, so you only make what nobody has made.'],
+      ['Storyboard', 'Scenes are planned with duration, narration and an image prompt for each frame.'],
+      ['Telugu Script', 'The narration is written in Telugu with transliteration, ready to record.'],
+    ].map(([title, desc], i) => ({ n: i + 1, title, desc, circle: circ(i % 2 ? 'var(--color-accent-2-700)' : 'var(--color-accent)', 'var(--color-bg)', 96) }));
+    const pf = [
+      ['YouTube Shorts', 'Native target — saturation checks run here.', 'yt', 'var(--color-accent)', 'var(--color-bg)'],
+      ['Instagram Reels', 'Same 9:16 storyboard, ready to post.', 'ig', 'linear-gradient(45deg,#feda75,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5)', 'var(--color-bg)'],
+      ['TikTok', 'Hooks written for the first two seconds.', 'tt', 'var(--color-neutral-900)', 'var(--color-bg)'],
+      ['Facebook Reels', 'Reach the audience already on Facebook.', 'fb', 'var(--color-accent-2)', 'var(--color-bg)'],
+    ];
+    const platforms = pf.map(([name, note, k, bg, fg], i) => ({
+      name, note, yt: k === 'yt', ig: k === 'ig', tt: k === 'tt', fb: k === 'fb', delay: i * 90,
+      card: `background:${bg};color:${fg};border-radius:40px;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:240px;justify-content:flex-end;`,
+      dot: `width:72px;height:72px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;margin-bottom:auto;`,
+    }));
+    const ag = [
+      ['Idea Generator', 'Brainstorms fresh angles across 16 topic areas, learning from your history and favourites.'],
+      ['Research', 'Pulls sources and picks the strongest, most surprising version of the story.'],
+      ['Freshness', 'Scores saturation against live YouTube Shorts and filters out crowded ideas.'],
+      ['Audience Analysis', 'Ranks trending areas 1–10 for the Telugu Shorts audience.'],
+      ['Channel Analysis', 'Breaks down every Short on your channel by views, likes and topic area.'],
+      ['Channel Performance', 'Compares recent Shorts with your all-time best and names the gaps.'],
+      ['Chat Orchestrator', 'Understands what you ask in Creative Studio and routes it to the right agent.'],
+      ['Human Approval', 'Pauses the pipeline so you approve or reject before anything is generated.'],
+      ['Image Prompt', 'Plans scenes, durations and narration with an image prompt for each.'],
+      ['Script', 'Writes the Telugu narration with transliteration and an English note per scene.'],
+    ];
+    const tones = [['var(--color-surface)', 'var(--color-text)', 'var(--color-accent)', 'var(--color-bg)'], ['var(--color-accent-2-200)', 'var(--color-accent-2-900)', 'var(--color-accent-2-700)', 'var(--color-bg)'], ['var(--color-accent-100)', 'var(--color-accent-900)', 'var(--color-accent-700)', 'var(--color-bg)']];
+    const agents = ag.map(([name, desc], i) => {
+      const [bg, fg, nb, nf] = tones[i % 3];
+      return { n: String(i + 1).padStart(2, '0'), name, desc, delay: (i % 3) * 90,
+        card: `background:${bg};color:${fg};border-radius:40px;padding:28px;display:flex;flex-direction:column;gap:12px;min-height:240px;transition:transform .3s,box-shadow .3s;`,
+        num: circ(nb, nf, 52) };
+    });
+    const ins = [
+      ['Clone the repo', 'Grab the code from GitHub.', 'git clone https://github.com/kvrsampath538/short_videos\ncd short_videos'],
+      ['Install dependencies', 'Everything the agents and the Streamlit app need.', 'pip install -r requirements.txt'],
+      ['Add your keys', 'Create a .env file in the project root — or fill them in later on the Settings screen.', 'OPENAI_API_KEY=...\nANTHROPIC_API_KEY=...\nYOUTUBE_API_KEY=...\nTAVILY_API_KEY=...\nGOOGLE_AI_STUDIO_API_KEY=...'],
+      ['Optional: local AI', 'With Ollama installed, the app runs on qwen3.5:9b locally and falls back to the cloud when it\u2019s stopped. Docker lets it auto-start OpenSERP search.', 'ollama pull qwen3.5:9b'],
+      ['Launch the studio', 'Opens in your browser. Type a topic and press Use My Idea.', 'streamlit run streamlit_app.py'],
+    ];
+    const install = ins.map(([title, desc, code], i) => ({ n: i + 1, title, desc, code, copy: this.copy(code, i), copyLabel: copied === i ? 'Copied' : 'Copy', circle: circ(i % 2 ? 'var(--color-accent-2-700)' : 'var(--color-accent)', 'var(--color-bg)', 64) }));
+    return {
+      rootRef: this.rootRef, overlayRef: this.overlayRef, cursorRef: this.cursorRef,
+      isHome: page === 'home', isFeatures: page === 'features', isStart: page === 'start',
+      isTour: page === 'tour', isInsights: page === 'insights', isSubs: page === 'subs',
+      goTour: this.go('tour'), goInsights: this.go('insights'), goSubs: this.go('subs'),
+      navItems: [['home','Home'],['features','Features'],['tour','Studio tour'],['insights','Insights'],['subs','Subtitles'],['start','Get started']].map(([k, label], i) => ({ label, n: String(i + 1).padStart(2, '0'), go: this.go(k), delay: 150 + i * 70 })),
+      tour: [
+        ['input', 'Home', 'Type a topic or tap one of sixteen areas. The tools grid gets you to everything else in one click.'],
+        ['idea_selection', 'Choose Idea', 'Fresh ideas arrive saturation-checked. Pick one, bookmark it, or blacklist what you never want again.'],
+        ['approval', 'Creative Review', 'Nothing is generated until you approve. Reject and the agents go looking for something fresher.'],
+        ['done', 'Short Ready', 'Storyboard scenes on the left, Telugu script on the right — both ready to download.'],
+        ['chat', 'Creative Studio', 'Ask in plain words. The chat routes research, saturation and storyboard requests to the right agent.'],
+        ['channel_performance', 'Channel Performance', 'See how your recent Shorts stack up against your all-time best.'],
+      ].map(([id, title, desc], i) => ({ id, title, desc, n: i + 1, circle: circ(i % 2 ? 'var(--color-accent-2-700)' : 'var(--color-accent)', 'var(--color-bg)', 64) })),
+      areas: [['Space', 9.4], ['History', 9.1], ['Hidden Mechanisms', 8.6], ['Nature', 8.0], ['Archaeology News', 7.4], ['Technology', 6.9], ['Geography', 6.1], ['Aviation Reports', 5.2]].map(([name, s], i) => ({
+        name, rank: String(i + 1).padStart(2, '0'), score: s.toFixed(1), delay: i * 60, barDelay: 200 + i * 60,
+        bar: `position:absolute;left:0;top:0;bottom:0;width:${s * 10}%;border-radius:999px;background:${i < 3 ? 'var(--color-accent)' : 'var(--color-accent-2-700)'};` })),
+      subSteps: [
+        ['Upload MP3', 'Drop the Telugu voice-over you recorded from the generated script.'],
+        ['Transcribe & translate', 'Speech is transcribed, translated to English and split into timed lines.'],
+        ['Review & export', 'Fix any line, download the SRT, or burn it in with the Subtitle Video Generator.'],
+      ].map(([title, desc], i) => {
+        const [bg, fg, nb, nf] = tones[i % 3];
+        return { title, desc, n: i + 1, delay: i * 100, circle: circ(nb, nf, 64), card: `background:${bg};color:${fg};border-radius:40px;padding:32px;display:flex;flex-direction:column;gap:14px;min-height:280px;` };
+      }),
+      srt: [
+        ['00:00:00,000 --> 00:00:03,200', 'Dawn rises over the Konark Sun Temple in Odisha.'],
+        ['00:00:03,200 --> 00:00:06,900', 'These 24 stone wheels are not just decoration.'],
+        ['00:00:06,900 --> 00:00:10,400', 'Each spoke casts a shadow that marks the hour.'],
+        ['00:00:10,400 --> 00:00:14,000', 'Priests read the time to the minute — 800 years ago.'],
+      ].map(([time, text], i) => ({ n: i + 1, time, text, delay: 200 + i * 140 })),
+      menuOpen, menuLabel: menuOpen ? 'Close' : 'Menu',
+      headerColor: menuOpen ? 'var(--color-bg)' : 'var(--color-text)',
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      transLabel: this.state.transLabel,
+      showCursor: (this.props.cursor ?? true) && typeof matchMedia !== 'undefined' && matchMedia('(pointer: fine)').matches,
+      goHome: this.go('home'), goFeatures: this.go('features'), goStart: this.go('start'),
+      steps, platforms, agents, install,
+    };
+  }
+}
+</script>
+</body>
+</html>

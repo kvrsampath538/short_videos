@@ -1,0 +1,317 @@
+{
+  "hidden_mechanisms": {
+    "medical_devices": [
+      "pacemaker refractory period why it ignores its own electrical signal",
+      "cochlear implant electrode tonotopic frequency map how it maps sound to position",
+      "dialysis counter-current flow why blood and dialysate flow in opposite directions",
+      "defibrillator capacitor why it charges before shock not continuous current",
+      "MRI gradient coil how spatial encoding translates position into image signal",
+      "insulin pump micro-bolus how it calculates dose corrections every few minutes",
+      "prosthetic osseointegration how titanium screws bond permanently to living bone",
+      "stent drug elution how polymer coating releases drug over weeks without dissolving",
+      "CPAP pressure how it adapts to each inhale and exhale cycle automatically",
+      "pulse oximeter two wavelengths why nail polish fools the oxygen reading"
+    ],
+    "industrial": [
+      "CNC machine tool compensation how it corrects for wear mid-cut without stopping",
+      "injection mold cavity pressure sensor how it prevents sink marks in plastic parts",
+      "centrifuge separation how red cells separate from plasma without breaking open",
+      "autoclave steam penetration how steam gets inside sealed surgical packaging",
+      "electroplating current density how it controls coating thickness to microns",
+      "laser cutter kerf width why the laser removes material not just cuts it",
+      "conveyor belt tensioner how it self-adjusts under variable load without manual tuning",
+      "PLC safety interlock why hardwired relay beats software in life-safety emergencies",
+      "industrial freeze dryer sublimation how food dries without heat damaging nutrients",
+      "heat exchanger fouling compensation how it detects scaling before efficiency drops"
+    ],
+    "agriculture": [
+      "crop duster electrostatic charging how droplets are attracted to plant leaves",
+      "drip irrigation pressure-compensating emitter how it delivers same flow at any pressure",
+      "grain elevator bucket leg how it avoids explosive dust cloud during grain transfer",
+      "combine harvester threshing cylinder how it strips grain without crushing kernels",
+      "greenhouse CO2 enrichment why pumping extra CO2 increases yield by 20-30%",
+      "soil compaction subsoiler how a leg fractures hardpan without inverting the soil",
+      "hydroponic nutrient film how roots get oxygen with no soil and no pump failure risk",
+      "seed drill coulter depth wheel how it maintains consistent planting depth on rough ground"
+    ],
+    "vehicles": [
+      "torque converter lockup clutch how it eliminates fluid slip at highway speed",
+      "differential lock how both wheels get equal torque regardless of traction",
+      "turbocharger wastegate how a pneumatic valve prevents boost overpressure at high RPM",
+      "CVT variator belt how it changes gear ratio continuously under full engine load",
+      "magnetorheological damper how magnetic field stiffens fluid in 1 millisecond",
+      "ABS modulator rapid cycling why 10-16 pressure pulses per second prevents lockup",
+      "tire sidewall heat why Formula 1 tires must run at 90 degrees to generate grip",
+      "EV regenerative braking how kinetic energy becomes electricity through motor reversal"
+    ],
+    "construction": [
+      "prestressed concrete tendon how steel cables under tension counteract beam bending",
+      "tuned mass damper pendulum how a 660-tonne weight stops skyscraper sway",
+      "seismic base isolator how rubber-lead layers let a building slide during earthquake",
+      "post-tensioning duct how cables are stressed after concrete hardens not before",
+      "curtain wall unitized panel how glass walls move independently from building structure",
+      "self-climbing formwork hydraulic how the framework jacks itself up each floor",
+      "bridge expansion joint why gaps in road surface prevent buckling in summer heat"
+    ],
+    "financial": [
+      "HFT colocation why microseconds of fiber cable length create million-dollar advantage",
+      "credit default swap settlement how CDS pays out even without formal bankruptcy",
+      "repo haircut how central banks discount collateral value to control systemic risk",
+      "ATM cassette denomination algorithm how machine decides which notes to dispense first",
+      "SWIFT correspondent bank why your wire transfer goes through 4 banks in different countries",
+      "contactless payment how NFC card works without battery by harvesting reader's RF field",
+      "options delta hedging why market makers continuously buy and sell the underlying asset",
+      "T+2 settlement why stock trades take 2 days to clear even though they are instant electronically"
+    ],
+    "rescue_equipment": [
+      "Jaws of Life hydraulic cutter how 10000 PSI cuts through car door steel in seconds",
+      "SCBA cylinder pressure how 60-minute rating actually varies with breathing rate",
+      "thermal camera bolometer how it detects temperature without cryogenic cooling",
+      "life raft CO2 cartridge how one small cylinder inflates a 20-person raft in seconds",
+      "avalanche airbag deployment how 150-liter bag deploys from a backpack in 3 seconds",
+      "Halon fire suppression why it extinguishes without water or damaging electronics",
+      "coastguard line-throwing gun how it fires a rescue line 250 meters accurately"
+    ],
+    "weather_systems": [
+      "Doppler radar velocity aliasing why rain moving too fast wraps back to opposite color",
+      "weather balloon radiosonde how it transmits temperature altitude humidity every second",
+      "lightning detection network triangulation how it locates strikes within 100 meters",
+      "Argo ocean float how it sinks and rises on its own using a hydraulic bladder",
+      "atmospheric lidar how laser pulses map wind speed through nearly invisible air"
+    ]
+  },
+  "nature": {
+    "marine": [
+      "mantis shrimp 16-color vision why it cannot distinguish colors humans can see",
+      "pistol shrimp cavitation bubble hotter than the sun for one millisecond",
+      "electric eel 860V how stacked electrocyte cells generate voltage without a battery",
+      "mimic octopus 15 species impersonation how it changes body shape not just color",
+      "hagfish slime one gram expands to 20 liters of gel in milliseconds",
+      "blue whale infrasound how calls travel 1000 kilometers through ocean at 18Hz",
+      "sea cucumber evisceration how it expels organs as defense then regrows them in weeks",
+      "bioluminescent dinoflagellate how mechanical stress triggers light emission",
+      "tardigrade vacuum survival how it survives space, radiation, and 150 degree heat",
+      "anglerfish bioluminescent lure why bacteria produce the light not the fish itself"
+    ],
+    "insects": [
+      "bombardier beetle 100-degree spray how two chemicals mix at the exit point only",
+      "dragonfly 95% prey capture rate how it intercepts mid-flight with mathematical precision",
+      "firefly luciferase cold light how bioluminescence produces zero heat unlike a bulb",
+      "spider silk protein folding why it is stronger than steel at the same cross-section weight",
+      "termite mound 31-degree thermostat how chimneys regulate temperature without electricity",
+      "monarch butterfly magnetic sun compass how it uses polarized light and magnetic field together",
+      "water strider surface tension microhair how wax hairs trap air to prevent sinking",
+      "locust swarm density trigger why 30 locusts per square meter switches solitary to gregarious",
+      "ant quorum sensing how 50000 ants vote on a new nest without a leader",
+      "bee waggle dance angle how it encodes compass direction accurate to 3 degrees"
+    ],
+    "mammals": [
+      "naked mole rat cancer immunity why it never develops tumors despite living 30 years",
+      "platypus electroreception how its bill detects electric fields from shrimp buried in mud",
+      "bat echolocation Doppler compensation how it adjusts call frequency to cancel its own motion",
+      "elephant infrasound seismic how foot vibrations travel through ground not just air",
+      "dolphin signature whistle identity how each dolphin creates and keeps its own name",
+      "sperm whale myoglobin how dark muscle stores enough oxygen for 90-minute dives",
+      "bear torpor fat metabolism how it avoids muscle loss across 6 months without eating",
+      "naked mole rat thermoregulation why the only cold-blooded mammal uses tunnels as a thermostat",
+      "rhinoceros horn keratin structure why it is chemically identical to a fingernail",
+      "giraffe 280mmHg blood pressure how the heart pumps hard enough to reach a 6-meter neck"
+    ],
+    "birds": [
+      "woodpecker skull spongy bone how it decelerates at 1200g without causing brain injury",
+      "flamingo inverted filter feeding how it pumps 20 liters per minute through upside-down beak",
+      "peregrine falcon stoop physiology how it controls 390kmh dive without losing consciousness",
+      "albatross dynamic soaring how it flies 1000km without flapping by using wind gradients",
+      "Arctic tern magnetic sense how it navigates from Arctic to Antarctic using Earth's field",
+      "lyrebird syrinx how it reproduces chainsaw and camera shutter sounds with perfect frequency",
+      "hummingbird overnight torpor how it drops heart rate from 1200 to 50 bpm to survive cold",
+      "common swift continuous flight how it stays airborne for 10 months without landing"
+    ],
+    "reptiles_amphibians": [
+      "chameleon iridophore crystal how color change is photonic structure not pigment",
+      "gecko van der Waals setae how 14 million toe hairs stick to glass without any glue",
+      "snake infrared pit organ 0.003-degree resolution how it sees warm prey in complete darkness",
+      "axolotl limb regeneration how it rebuilds bone nerve and muscle to exact original blueprint",
+      "Komodo dragon venom anticoagulant why its bite causes bleeding that cannot be stopped",
+      "sea turtle magnetic imprinting how hatchlings memorize birth beach magnetic signature for life",
+      "poison dart frog toxin sequestration how it eats toxic beetles and concentrates their poison"
+    ]
+  },
+  "aviation": {
+    "commercial_aircraft": [
+      "Boeing 747 wingtip flex how wings bend 7 meters under maximum load",
+      "Airbus fly-by-wire envelope protection how software prevents pilot from stalling the aircraft",
+      "commercial jet fan blade hollow titanium why hollow construction is stronger than solid",
+      "cabin outflow valve how it maintains 8000-foot cabin altitude at 40000 feet",
+      "thrust reverser cascade vane how they deflect exhaust forward on landing",
+      "winglet aerodynamics how upturned tips reduce induced drag by 5 percent",
+      "landing gear shimmy damper how it prevents speed-wobble on touchdown",
+      "pitot tube heater why pitot icing caused Air France 447 crash over Atlantic",
+      "airliner inner window bleed hole why the tiny hole is a safety-critical design feature",
+      "APU auxiliary power unit how a small turbine starts main engines on the ground"
+    ],
+    "military_aircraft": [
+      "F-35 distributed aperture system how pilot sees through fuselage in all directions",
+      "B-2 Spirit flying wing how computers correct instability 40 times per second",
+      "SR-71 Blackbird fuel tank design why it deliberately leaked on the ground but sealed at Mach 3",
+      "A-10 Warthog gun recoil how the 30mm cannon noticeably slows the aircraft when fired",
+      "CH-47 Chinook tandem rotor how two rotors cancel each other's torque reaction",
+      "AH-64 Apache mast sight how radar sees over a hill while the helicopter hides behind it",
+      "Harrier Pegasus nozzle how four rotating nozzles enable vertical takeoff from a ship",
+      "F-22 thrust vectoring how exhaust paddles allow maneuvering at near-zero airspeed",
+      "stealth RAM coating how honeycomb panels scatter radar cross-section to near zero",
+      "EMALS catapult how electromagnetic launch replaced steam pistons on USS Gerald Ford"
+    ],
+    "helicopters": [
+      "retreating blade stall why helicopters have a hard maximum airspeed limit",
+      "coaxial Ka-52 rotor how contra-rotation eliminates the tail rotor entirely",
+      "fenestron shrouded tail rotor how enclosure reduces noise and ground hazard",
+      "helicopter governor RPM droop how it maintains rotor speed when collective pitch increases",
+      "autorotation landing how a helicopter descends safely with zero engine power",
+      "swashplate cyclic control how tilting a rotating plate changes blade pitch once per revolution",
+      "vortex ring state why descending too steeply into your own downwash causes total lift loss",
+      "ground resonance coupling why helicopter landing gear oscillation can destroy the aircraft in seconds"
+    ],
+    "aircraft_types_unusual": [
+      "seaplane spray rail hydrodynamics how hull shape prevents bow digging in during takeoff",
+      "autogyro freewheeling rotor why it cannot stall even at zero forward airspeed",
+      "V-22 Osprey tiltrotor conversion how nacelles rotate 90 degrees in 12 seconds",
+      "ekranoplan ground effect vehicle how it flies on compressed air cushion without wings working",
+      "solar-powered Zephyr drone how it flew for 26 days using only sunlight",
+      "paramotor torque compensation why pilot leans sideways to counteract propeller rotation"
+    ],
+    "incidents": [
+      "Air Canada Gimli Glider how a metric conversion error caused fuel exhaustion at 41000 feet",
+      "United 232 Sioux City how crew landed with zero hydraulic controls using engine thrust only",
+      "Air Transat 236 how it glided 100km to Azores on completely empty fuel tanks",
+      "Aloha Airlines 243 explosive decompression how the roof peeled off yet landed safely",
+      "British Airtours Manchester fire how 55 died from smoke inhalation in under 90 seconds",
+      "Ethiopian 961 hijacking ditching how pilot landed in the ocean while wrestling with hijacker"
+    ]
+  },
+  "science": {
+    "physics": [
+      "quantum tunneling how electrons pass through classically forbidden energy barriers",
+      "superconductor Meissner effect why all magnetic fields are expelled below critical temperature",
+      "piezoelectric quartz how mechanical stress generates measurable voltage",
+      "tokamak divertor how magnetic fields contain 150-million-degree plasma",
+      "pulsar timing accuracy why a rotating neutron star outperforms atomic clocks",
+      "sonoluminescence why imploding bubbles reach 20000 degrees for nanoseconds",
+      "double-slit which-way information how observing an electron destroys interference pattern",
+      "LIGO mirror how interferometer detects 1/10000 proton-width displacement",
+      "photon sail pressure how light pressure from the sun can accelerate a spacecraft"
+    ],
+    "chemistry": [
+      "oobleck cornstarch impact hardening why it becomes solid under impact then flows again",
+      "thermite aluminum iron oxide why 2500-degree reaction cannot be extinguished with water",
+      "dry ice sublimation why CO2 skips the liquid phase entirely at normal pressure",
+      "gallium 29.8-degree melting point why it liquefies from the heat of your hand",
+      "lotus effect contact angle why a hydrophobic surface makes water roll away with dirt",
+      "liquid nitrogen expansion 1 liter becomes 700 liters of gas almost instantly",
+      "aerogel insulation why the lightest solid can support 4000 times its own weight",
+      "white phosphorus air ignition why it spontaneously combusts when exposed to oxygen"
+    ],
+    "biology_medicine": [
+      "CRISPR cas9 guide RNA how it finds one sequence among 3 billion base pairs",
+      "mRNA vaccine lipid nanoparticle how fatty sphere smuggles genetic instructions into cells",
+      "CAR-T chimeric receptor how engineered immune cells achieve 90% remission in some cancers",
+      "phage therapy specificity how viruses destroy only target bacteria without touching others",
+      "optogenetics fiber optic how single neurons are switched on by a flash of light",
+      "brain organoid electrical activity how a 3mm mini-brain develops spontaneous firing",
+      "epigenetic methylation how identical twins diverge in gene expression over decades",
+      "telomere shortening how each cell division counts down toward cellular death"
+    ],
+    "space_technology": [
+      "ion thruster xenon propulsion how electric fields accelerate ions to 40km per second",
+      "Kessler syndrome cascade how one collision in low orbit could make space unusable for centuries",
+      "lunar regolith 3D printing how sunlight sinters Moon soil into building bricks",
+      "Parker Solar Probe heat shield how 4.5-inch carbon foam survives 1400 degrees near the sun",
+      "James Webb wavefront sensing how 18 mirrors align to 150-nanometer precision in space",
+      "Voyager 1 heliopause crossing how NASA confirmed it entered interstellar space",
+      "Mars habitat radiation shielding how water walls protect astronauts from cosmic rays"
+    ]
+  },
+  "history": {
+    "technology_military": [
+      "WWII proximity fuze how a tiny radio in a shell detected nearby aircraft and self-detonated",
+      "Cold War acoustic torpedo how passive sonar homed on propeller noise signatures",
+      "V2 gyroscopic guidance how a spinning gyroscope steered the first ballistic missile",
+      "cavity magnetron invention how two physicists created the device that enabled radar in weeks",
+      "Norden bombsight mechanical computer how it solved trigonometry at 300mph",
+      "tank coincidence rangefinder how split-prism optics measured range before laser existed",
+      "submarine snorkel diesel operation how it ran diesel engines while submerged in WWII",
+      "bazooka shaped charge jet how a copper cone focuses an explosion into a penetrating jet"
+    ],
+    "disasters": [
+      "Chernobyl positive void coefficient why reactor accelerated as cooling water disappeared",
+      "Tacoma Narrows resonance how 4mph wind matched bridge frequency and destroyed it",
+      "Deepwater Horizon BOP failure why the blowout preventer failed at the critical moment",
+      "Hindenburg static discharge how hydrogen ignited from static electricity during mooring",
+      "Challenger O-ring temperature why 7.2 degrees was below the seal's specification",
+      "Bhopal MIC water reaction how one tonne of water caused 40 tonnes of methyl isocyanate gas",
+      "Texas City fertilizer disaster how a shipboard fire detonated 2300 tonnes of ammonium nitrate"
+    ],
+    "infrastructure": [
+      "Hoover Dam arch gravity stress how arched shape transfers water pressure to canyon walls",
+      "Channel Tunnel TBM laser guidance how boring machines from both sides met within 35cm",
+      "Panama Canal miter gate sill how the gate seals against water without any gasket",
+      "LHC superconducting dipole magnet how liquid helium at 1.9 Kelvin bends proton beams",
+      "Burj Khalifa outrigger damping how the structure transfers wind load between tube structures"
+    ]
+  },
+  "psychology": {
+    "cognitive": [
+      "inattentional blindness gorilla study how attending to one task makes obvious events invisible",
+      "change blindness saccade suppression how brain disables vision during eye movement",
+      "peak-end rule pain memory why final moments determine remembered pain not total duration",
+      "anchoring effect first number how the first figure heard dominates all subsequent estimates",
+      "embodied cognition warm coffee how holding a warm cup changes personality judgments",
+      "effort justification hazing how painful initiation makes members value the group more",
+      "priming 17ms flash how a word shown for one frame changes your next decision"
+    ],
+    "social": [
+      "deindividuation uniform anonymity how identical costume makes people act against their values",
+      "groupthink Bay of Pigs why unanimous decisions in cohesive groups are catastrophically wrong",
+      "fundamental attribution error why we blame character when we should blame the situation",
+      "foot-in-door compliance how agreeing to small request doubles rate of compliance with large one",
+      "minimal group in-group favoritism how random group assignment makes people discriminate",
+      "smoke-filled room social proof how watching others not react makes you assume safety",
+      "self-serving bias why success is always skill but failure is always someone else's fault"
+    ],
+    "perception": [
+      "McGurk effect how seeing a mouth say ga makes you hear da when the audio says ba",
+      "phi phenomenon apparent motion how 24 still images per second fool the brain into seeing movement",
+      "Adelson checker shadow why squares A and B are identical brightness despite looking different",
+      "temporal order judgment why two simultaneous sounds are perceived as sequential",
+      "rubber hand illusion how stroking a fake hand makes you feel it as part of your body",
+      "phantom limb pain cortical remapping how real pain comes from a limb that no longer exists"
+    ]
+  },
+  "world_cultures": {
+    "legal_unusual": [
+      "Singapore gum sale ban why chewing gum is legal to eat but illegal to sell or import",
+      "Vatican state jurisdiction why the smallest country has the world's lowest crime rate",
+      "Japan 99.9% conviction rate why prosecutors only charge cases they have already won",
+      "Iceland name committee why parents must choose from an approved list of 4000 names",
+      "Norway open tax records why every citizen's income and tax payment is publicly searchable",
+      "Palau shark sanctuary why fishing sharks is illegal in 600000 square kilometers of ocean",
+      "Bhutan Gross National Happiness how the kingdom measures GDP in citizen wellbeing not money"
+    ],
+    "economic_unusual": [
+      "Kenya M-Pesa mobile money how Kenya had cashless banking before Europe had smartphone apps",
+      "Hawala informal transfer how billions of dollars move internationally with zero electronic record",
+      "Bangladesh Grameen microcredit why lending to the poorest women achieves 97% repayment",
+      "El Salvador Bitcoin legal tender what happened when a country made cryptocurrency mandatory",
+      "Tontine death pool how French aristocrats funded government bonds through survivor payouts",
+      "Swiss banking secrecy origin why bank secrecy laws were created to protect Jewish depositors from Nazis"
+    ],
+    "social_norms": [
+      "Japan herbivore men 30 percent of men in their 20s reject marriage career and consumption",
+      "South Korea age reckoning why Koreans are officially 1-2 years older than by international count",
+      "Finland baby box why every Finnish newborn receives identical state-funded kit of essentials",
+      "Netherlands cycling infrastructure how Amsterdam removed 700000 parking spaces for bike lanes",
+      "Denmark 4pm office departure why leaving early is cultural norm yet productivity is highest in EU",
+      "Sweden royal road law why any Swedish citizen can walk across any private land legally"
+    ]
+  }
+}

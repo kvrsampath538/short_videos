@@ -1,7 +1,6 @@
 import json
-import os
 import re
-from langchain_google_genai import ChatGoogleGenerativeAI
+from ollama_client import get_sonnet_llm
 from langchain_core.messages import HumanMessage, SystemMessage
 
 
@@ -90,11 +89,7 @@ Return ONLY a JSON object:
 
 
 def script_agent_node(state: dict) -> dict:
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
-        temperature=0.7,
-    )
+    llm = get_sonnet_llm(temperature=0.7)
 
     best_idea   = state.get("best_idea", {})
     scenes      = state.get("image_prompts", [])

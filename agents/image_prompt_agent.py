@@ -1,6 +1,5 @@
 import json
-import os
-from langchain_google_genai import ChatGoogleGenerativeAI
+from ollama_client import get_haiku_llm
 from langchain_core.messages import HumanMessage, SystemMessage
 
 SYSTEM_PROMPT = """You are a visual storytelling expert creating storyboards for Google Flow's
@@ -48,11 +47,7 @@ Return ONLY a JSON object:
 
 
 def image_prompt_agent_node(state: dict) -> dict:
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
-        temperature=0.8,
-    )
+    llm = get_haiku_llm(temperature=0.8)
 
     best_idea = state.get("best_idea", {})
     if not best_idea:

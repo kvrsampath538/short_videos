@@ -1,20 +1,16 @@
 import json
-import os
+import sys
 from pathlib import Path
-from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
-from tools import get_tavily_search_tool
+from tools import get_openserp_search_tool
 
-_INSIGHTS_FILE = Path(__file__).parent.parent / "audience_insights.json"
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vectordb import get_db
+from ollama_client import get_sonnet_llm
 
 
 def _load_insights() -> dict | None:
-    if not _INSIGHTS_FILE.exists():
-        return None
-    try:
-        return json.loads(_INSIGHTS_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return None
+    return get_db().load_config("audience_insights")
 
 SYSTEM_PROMPT = """You are a viral content researcher. Your mission: find the most shocking, counter-intuitive,
 and little-known angles on ANY topic — angles that make a YouTube viewer stop scrolling instantly.
@@ -82,34 +78,16 @@ hidden mechanisms       → Find the gap between what people ASSUME a system doe
                           Do NOT explain how things work in general — find ONE specific mechanism where
                           the real answer is shocking or counterintuitive. THIS IS A PRIORITY AREA.
 
-                          STRONG EXAMPLES TO USE AS TEMPLATES:
+                          PATTERN EXAMPLES (all listed in KNOWN SATURATED TOPICS — study structure only):
                           • Ship anchor — people assume the anchor weight holds the ship. WRONG. The
-                            CATENARY (the draped curve of chain on the seabed) holds it.
+                            CATENARY curve of chain on the seabed holds it. Title: "Ship Anchors Don't
+                            Actually Anchor Ships — The Chain Does"
                           • Nuclear reactor water — water is the neutron MODERATOR, not just coolant.
-                            If water leaks, the reaction STOPS. The reactor is inherently fail-safe.
-                          • GPS and Einstein — GPS satellites' clocks run 38 microseconds fast per
-                            day (relativity). Without correction, navigation drifts 11km per day.
-                          • PAPI lights — 4 runway lights guide every airliner to land. No passenger
-                            knows this system exists.
-                          • Seatbelt pre-tensioner — explosive charge detonates BEFORE collision force
-                            reaches the occupant.
-                          • GravityLight — 12kg bag + geared crank powers LED (cuckoo clock mechanism).
-                          • Runway numbers — magnetic heading ÷ 10, painted on every runway worldwide.
-                          • Bulbous bow — the underwater bulge on ship hulls creates a wave that cancels
-                            the bow wave, reducing drag by 15%.
-                          • Airplane window bleed hole — the tiny hole in the inner pane equalises
-                            pressure; the outer pane bears all the stress alone.
-                          • Car crumple zones — deliberately DESIGNED TO FAIL so the cabin doesn't.
-                          • Elevator brake — triggered by overspeeding, NOT by cable snap (centrifugal
-                            governor, invented in 1852, same principle as a flywheel governor).
-                          • Dead Hand (Perimeter) — Soviet system that auto-launches nuclear weapons
-                            if leadership is killed. It is still active.
-                          • Trebuchet — the falling counterweight (not a spring) makes it the most
-                            energy-efficient siege weapon ever built.
-                          • Sonar silence — submarines go silent AFTER pinging because the ping
-                            reveals their own position to every listener.
-                          • Dam flip bucket — water shot 60m into the air to dissipate kinetic energy
-                            safely. Looks like a design flaw; it's intentional.
+                            If water leaks, the reaction STOPS — inherently fail-safe by design.
+                            Title: "Nuclear Reactors Turn Off If They Lose Water — Not Melt Down"
+                          Find NEW mechanisms in untapped domains: medical devices · industrial safety
+                          interlocks · agricultural machinery · legal/court plumbing · financial
+                          clearing systems · logistics cold-chains · sports equipment · rescue gear
 
                           SEARCH QUERIES:
                           "how [object] actually works counterintuitive mechanism"
@@ -144,70 +122,17 @@ world cultures          → Find practices that are completely normal in their l
                                   "traditional ritual [country] anthropology unbelievable"
                                   "strange law [country] cultural reason real"
 
-CATEGORY INSPIRATION — rich veins to mine:
-AWE (scale and cosmic power):
-  NASA Parker Solar Probe (touching the sun at 430 miles/sec) · Artemis mission anomalies ·
-  Krakatoa 1883 (heard 5,000 km away, pressure wave circled Earth 7 times) · Voyager 1 interstellar data
+INDIA GOVERNMENT REPORTS (CAG audits and RTI disclosures — high local relevance for Telugu audience):
+  2G spectrum CAG: sold for ₹9,295 crore, actual value ₹1,76,645 crore ·
+  Coal block CAG: ₹1.86 lakh crore in undue gains · NHAI ₹7,000 crore unaccounted toll revenue ·
+  RTI: 300% premium on military spare parts · 40% of PDS grain never reached beneficiaries ·
+  CAG Ayushman Bharat: claims paid for patients already dead
 
-MYSTERY (hidden systems, unexplained mechanics):
-  Dead Hand nuclear auto-launch system · Fingerprint uniqueness (why every person differs — unknown) ·
-  Labyrinth navigation biology · U-2 spy plane chase car · PAPI approach lights geometry
-
-HUMAN STORIES (one person, impossible specific outcome):
-  Desmond Doss — saved 75 men at Hacksaw Ridge, refused to ever carry a weapon
-  Grigori Perelman — solved the $1M Poincaré Conjecture, declined the prize and vanished
-  George Dantzig — solved two "unsolvable" stat problems as homework thinking they were assignments
-
-HIDDEN MECHANISMS (everyday objects and systems nobody understands):
-  Ship anchor catenary — chain shape holds the ship, not the anchor weight ·
-  PAPI approach lights — 4 lights guide every airliner to land; no passenger knows ·
-  Aircraft carrier arresting wire — 3-inch cable stops 30-ton jet from 150mph in 2 seconds ·
-  Aircraft carrier catapult / EMALS — 0 to 165mph in 2 seconds on a 100m track ·
-  U-2 spy plane chase car — pilot can't see runway; chase car at 140mph shouts altitude ·
-  Nuclear reactor water = neutron moderator (water loss = reactor OFF, not meltdown) ·
-  GPS needs Einstein's relativity — 38μs/day clock correction; without it, 11km drift daily ·
-  GravityLight — 12kg bag descending 20min powers LED via geared crank (cuckoo clock principle) ·
-  Runway numbers — magnetic heading ÷ 10 painted on every runway ·
-  Seatbelt pre-tensioner — controlled explosive detonates before collision force reaches you ·
-  Submarine swim bladder origin — fish invented ballast tank buoyancy 400 million years ago ·
-  Dead Hand system — Soviet nuclear auto-launch if leadership is killed ·
-  Bridge expansion joints — Brooklyn Bridge grows 4 feet longer in summer ·
-  Fire hydrant unpressurised — the fire truck provides the pressure, not the hydrant ·
-  Viganella mirror — giant computer-controlled mountain mirror reflects sun into a sunless valley
-
-INDIA GOVERNMENT REPORTS (CAG audits and RTI disclosures):
-  2G spectrum CAG report — spectrum sold for ₹9,295 crore; actual value ₹1,76,645 crore ·
-  Coal block CAG audit — ₹1.86 lakh crore in undue gains to private companies ·
-  CAG found NHAI (highways authority) couldn't account for ₹7,000 crore in toll revenue ·
-  RTI revealed government paid 300% premium on military spare parts bought indirectly ·
-  Parliamentary committee found 40% of PDS grain never reached intended beneficiaries ·
-  SEBI found manipulation in 100+ listed stocks linked to entities connected to officials ·
-  CAG audit of Ayushman Bharat found claims paid for patients who were already dead
-
-WORLD CULTURES (shocking practices that are completely normal locally):
-  MUST have a SPECIFIC verifiable fact — a number, a law, a frequency, a government response.
-
-  • Toraja, Indonesia — dead family members kept at home for weeks/months, mummified for years;
-    exhumed annually in "Ma'nene" ceremony (washed, dressed, photographed, paraded through village)
-  • Famadihana, Madagascar — ancestors dug up every 7 years, rewrapped in silk, danced with;
-    the number of people attending determines how much honour the family receives
-  • Satere-Mawe, Brazil — boys wear gloves packed with bullet ants (30× more painful than a bee)
-    for 10 solid minutes. Must do this 20 times across years to be considered a man.
-  • Santhara, Jain India — voluntary fasting unto death; legally permitted; Rajasthan High Court
-    banned it in 2015, Supreme Court overturned the ban; thousands have died this way
-  • Hikikomori, Japan — 1.15 million people (2023 government count) who never leave their rooms;
-    Japan's Cabinet Office publishes annual statistics; there is a dedicated government ministry
-  • Karoshi, Japan — death from overwork is a legally recognised cause of death; government tracks
-    it; companies compensate families; 2,000+ official karoshi deaths recorded annually
-  • China funeral strippers — professionally hired to draw large crowds (more people = more honour
-    for deceased); government has banned them 4 separate times; practice persists in rural areas
-  • Naghol, Vanuatu — men jump from 30m towers with only vines around their ankles; vine must
-    brush their head against the earth; preceded bungee jumping by centuries; first recorded
-    jump filmed in 1950 was performed by a woman to escape an abusive husband
-  • Fa'afafine, Samoa — fully socially accepted third gender (born male, raised as female);
-    not a modern concept — centuries-old, mainstream, supported by families and employers
-  • Iceland everyone is listed equally — phone directory lists all citizens by first name + job;
-    no surname hierarchy; the President is findable the same way as any other citizen
+WORLD CULTURES (shocking practices — must have specific verifiable fact):
+  • Hikikomori, Japan — 1.15M people (2023 govt count) never leave rooms; dedicated ministry exists
+  • Santhara, India — fasting unto death legally permitted; Supreme Court tried to ban it, lost
+  • Karoshi, Japan — death from overwork legally recognised; 2,000+ official deaths/year
+  ⚠️ Toraja, Famadihana, Satere-Mawe, Naghol, China strippers are saturated — find new practices
 
 EXAMPLES OF STRONG VS WEAK:
 WEAK: "Social media is addictive" — vague, no experiment, no story, no shock
@@ -235,12 +160,8 @@ Return exactly 3 ideas as JSON:
 
 
 def research_agent_node(state: dict) -> dict:
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
-        temperature=0.9,
-    )
-    search_tool = get_tavily_search_tool(max_results=5)
+    llm = get_sonnet_llm(temperature=0.9)
+    search_tool = get_openserp_search_tool(max_results=3)
     llm_with_tools = llm.bind_tools([search_tool])
 
     input_topic = state["input_topic"]
@@ -301,7 +222,10 @@ def research_agent_node(state: dict) -> dict:
     messages.append(response)
 
     # Process tool calls if any
-    while response.tool_calls:
+    _MAX_SEARCH_ROUNDS = 5
+    _search_rounds = 0
+    while response.tool_calls and _search_rounds < _MAX_SEARCH_ROUNDS:
+        _search_rounds += 1
         for tool_call in response.tool_calls:
             print(f"[Research Agent] Using tool: {tool_call['name']} → {tool_call['args'].get('query', '')[:60]}")
             tool_result = search_tool.invoke(tool_call["args"])
@@ -309,8 +233,14 @@ def research_agent_node(state: dict) -> dict:
             messages.append(
                 ToolMessage(content=str(tool_result), tool_call_id=tool_call["id"])
             )
-        response = llm_with_tools.invoke(messages)
-        messages.append(response)
+        try:
+            response = llm_with_tools.invoke(messages)
+            messages.append(response)
+        except Exception as e:
+            print(f"[Research Agent] ⚠ LLM call failed ({type(e).__name__}: {e}) — stopping search early")
+            break
+    if _search_rounds >= _MAX_SEARCH_ROUNDS:
+        print(f"[Research Agent] ⚠ search round cap ({_MAX_SEARCH_ROUNDS}) reached — proceeding with gathered data")
 
     # Parse the JSON response
     raw = response.content

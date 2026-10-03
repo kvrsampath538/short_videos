@@ -1,51 +1,55 @@
 import json
-import os
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from langchain_google_genai import ChatGoogleGenerativeAI
+from ollama_client import get_haiku_llm
 from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
-from tools import get_tavily_search_tool, search_youtube_shorts
+from tools import get_openserp_search_tool, search_youtube_shorts
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vectordb import get_db
+from settings import get_channel_url, get_channel_language
 
 AREAS = [
     "history", "science", "latest science news", "geography", "nature", "space",
     "psychology", "psychology studies", "technology", "interesting events", "inspiring people",
     "archaeology news", "aviation reports", "research papers",
-    "world cultures", "hidden mechanisms",
+    "world cultures", "hidden mechanisms", "surprising facts", "unknown facts",
 ]
 
-INSIGHTS_FILE = Path(__file__).parent.parent / "audience_insights.json"
 
-CHANNEL_URL = "https://www.youtube.com/@Worldaffairs0138"
-
-SYSTEM_PROMPT = f"""You are a YouTube audience intelligence analyst specialising in Telugu-language
+def _system_prompt() -> str:
+    channel_url = get_channel_url()
+    language = get_channel_language()
+    return f"""You are a YouTube audience intelligence analyst specialising in {language}-language
 short-form content.
 
-MISSION: Analyse current public interest on YouTube Shorts for a Telugu-speaking audience and score
+MISSION: Analyse current public interest on YouTube Shorts for a {language}-speaking audience and score
 each content area so the idea generator can prioritise the most attractive topics.
 
-CHANNEL: {CHANNEL_URL}
-This is a Telugu educational/informational Shorts channel covering world affairs, science,
+CHANNEL: {channel_url}
+This is a {language} educational/informational Shorts channel covering world affairs, science,
 history, psychology, hidden mechanisms, and cultural facts.
 
-THE 16 CONTENT AREAS YOU MUST SCORE:
+THE 18 CONTENT AREAS YOU MUST SCORE:
   history · science · latest science news · geography · nature · space
   psychology · psychology studies · technology · interesting events · inspiring people
   archaeology news · aviation reports · research papers
-  world cultures · hidden mechanisms
+  world cultures · hidden mechanisms · surprising facts · unknown facts
 
 SCORING (1–10 for each area):
-  10  = Viral demand right now among Telugu Shorts viewers; existing videos get 500k+ views
+  10  = Viral demand right now among {language} Shorts viewers; existing videos get 500k+ views
   8–9 = Strong consistent demand; multiple recent videos performing well
   6–7 = Moderate interest; good niche
   4–5 = Average; competitive or declining
   1–3 = Low current interest or very saturated
 
 RESEARCH APPROACH — search in this sequence:
-1. Search YouTube for trending Telugu educational/informational Shorts RIGHT NOW
-2. Search for what content the channel {CHANNEL_URL} covers (look at titles and topics)
-3. Search for which specific topic angles are getting most views on similar Telugu channels
+1. Search YouTube for trending {language} educational/informational Shorts RIGHT NOW
+2. Search for what content the channel {channel_url} covers (look at titles and topics)
+3. Search for which specific topic angles are getting most views on similar {language} channels
 4. Search for topics that are trending in India on social media / news that map to the 19 areas
-5. Search for YouTube Shorts performance patterns for Telugu-language science/history/psychology
+5. Search for YouTube Shorts performance patterns for {language}-language science/history/psychology
 
 WHAT RESONATES WITH TELUGU AUDIENCES (use as scoring context):
 • Hidden systems and engineering explained simply — high curiosity pull
@@ -83,53 +87,51 @@ OUTPUT FORMAT — return valid JSON only (no markdown):
     ...up to 8 angles...
   ],
   "channel_pattern": "2-3 sentences describing what topics this channel covers and what style works for them",
-  "audience_insights": "3-4 sentences about what Telugu YouTube Shorts audiences want right now — be specific",
+  "audience_insights": "3-4 sentences about what {language} YouTube Shorts audiences want right now — be specific",
   "search_evidence": "Key data points from your searches that support the scores"
 }}"""
 
 
 def load_audience_insights() -> dict | None:
-    """Load saved audience insights, or return None if not yet analysed."""
-    if not INSIGHTS_FILE.exists():
-        return None
-    try:
-        return json.loads(INSIGHTS_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return None
+    """Load saved audience insights from VectorDB, or return None if not yet analysed."""
+    return get_db().load_config("audience_insights")
 
 
 def analyze_audience_interest_node(state: dict) -> dict:
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
-        temperature=0.3,
-    )
-    web_tool     = get_tavily_search_tool(max_results=5)
+    language = get_channel_language()
+    channel_url = get_channel_url()
+    handle = channel_url.split("/@")[-1].rstrip("/") if "/@" in channel_url else channel_url
+
+    llm = get_haiku_llm(temperature=0.3)
+    web_tool     = get_openserp_search_tool(max_results=3)
     yt_tool      = search_youtube_shorts
     llm_with_tools = llm.bind_tools([web_tool, yt_tool])
 
     user_message = (
-        "Analyse current YouTube Shorts trends for Telugu-speaking audiences. "
+        f"Analyse current YouTube Shorts trends for {language}-speaking audiences. "
         "Run these searches in sequence:\n"
-        f"1. YouTube search: 'Telugu shorts viral trending educational 2025'\n"
-        f"2. YouTube search: 'Telugu shorts psychology hidden facts science 2025'\n"
-        f"3. Web search: 'worldaffairs0138 youtube channel Telugu shorts topics'\n"
-        f"4. Web search: 'Telugu YouTube Shorts highest views science history psychology 2025'\n"
-        f"5. Web search: 'India trending topics YouTube Shorts Telugu audience interest 2025'\n\n"
-        "Then score all 19 content areas (1–10) for current Telugu audience interest."
+        f"1. YouTube search: '{language} shorts viral trending educational 2025'\n"
+        f"2. YouTube search: '{language} shorts psychology hidden facts science 2025'\n"
+        f"3. Web search: '{handle} youtube channel {language} shorts topics'\n"
+        f"4. Web search: '{language} YouTube Shorts highest views science history psychology 2025'\n"
+        f"5. Web search: 'India trending topics YouTube Shorts {language} audience interest 2025'\n\n"
+        f"Then score all 19 content areas (1–10) for current {language} audience interest."
     )
 
     messages = [
-        SystemMessage(content=SYSTEM_PROMPT),
+        SystemMessage(content=_system_prompt()),
         HumanMessage(content=user_message),
     ]
 
-    print(f"\n[Audience Analysis] Starting Telugu YouTube audience analysis...")
+    print(f"\n[Audience Analysis] Starting {language} YouTube audience analysis...")
 
     response = llm_with_tools.invoke(messages)
     messages.append(response)
 
-    while response.tool_calls:
+    _MAX_SEARCH_ROUNDS = 10
+    _search_rounds = 0
+    while response.tool_calls and _search_rounds < _MAX_SEARCH_ROUNDS:
+        _search_rounds += 1
         for tc in response.tool_calls:
             args = tc.get("args", {})
             if isinstance(args, str):
@@ -145,8 +147,14 @@ def analyze_audience_interest_node(state: dict) -> dict:
             else:
                 tool_result = web_tool.invoke(args)
             messages.append(ToolMessage(content=str(tool_result), tool_call_id=tc.get("id", "")))
-        response = llm_with_tools.invoke(messages)
-        messages.append(response)
+        try:
+            response = llm_with_tools.invoke(messages)
+            messages.append(response)
+        except Exception as e:
+            print(f"[Audience Analysis] ⚠ LLM call failed ({type(e).__name__}: {e}) — stopping search early")
+            break
+    if _search_rounds >= _MAX_SEARCH_ROUNDS:
+        print(f"[Audience Analysis] ⚠ search round cap ({_MAX_SEARCH_ROUNDS}) reached — proceeding with gathered data")
 
     raw = response.content
     if isinstance(raw, list):
@@ -177,11 +185,11 @@ def analyze_audience_interest_node(state: dict) -> dict:
     result = {
         **parsed,
         "analyzed_at": datetime.now(timezone.utc).isoformat(),
-        "channel": CHANNEL_URL,
+        "channel": channel_url,
     }
 
-    INSIGHTS_FILE.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"[Audience Analysis] Saved to {INSIGHTS_FILE.name}")
+    get_db().save_config("audience_insights", result)
+    print("[Audience Analysis] Saved to VectorDB (audience_insights)")
     print(f"[Audience Analysis] Top areas: {result.get('top_areas', [])}")
 
     return {"audience_insights": result}

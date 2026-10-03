@@ -1,0 +1,271 @@
+{
+  "generated_at": "2026-10-03T17:29:27.892440+00:00",
+  "target_areas": [
+    "latest science news",
+    "space",
+    "technology",
+    "geography",
+    "archaeology news"
+  ],
+  "batches": [
+    {
+      "batch_num": 0,
+      "angle": "Authoritative source mining — NASA, NTSB, declassified archives",
+      "queries_by_area": {
+        "latest science news": [
+          "site:sciencedaily.com unexpected findings protein folding 2024",
+          "site:sciencedaily.com surprising result climate change impact on ocean currents 2024",
+          "site:sciencedaily.com counterintuitive effect of dark matter on galaxy formation 2024",
+          "site:sciencedaily.com unexpected outcomes of CRISPR gene editing on human cells 2024"
+        ],
+        "space": [
+          "site:nasa.gov unexpected results from Parker Solar Probe solar wind analysis",
+          "site:nasa.gov James Webb Telescope mirror alignment challenges 2023",
+          "site:nasa.gov counterintuitive findings from Mars rover Perseverance's soil samples",
+          "site:nasa.gov photon sail propulsion unexpected efficiency in deep space missions"
+        ],
+        "technology": [
+          "site:sciencedaily.com laser cutter kerf width study on material removal 2024",
+          "site:nasa.gov unexpected applications of quantum computing in aerospace engineering",
+          "site:nasa.gov counterintuitive results from AI in spacecraft navigation systems",
+          "site:nasa.gov LIGO mirror sensitivity breakthrough in gravitational wave detection"
+        ],
+        "geography": [
+          "site:sciencedaily.com surprising geological activity in dormant volcanoes 2024",
+          "site:nasa.gov unexpected findings in satellite imagery of deforestation patterns",
+          "site:nasa.gov counterintuitive effects of urbanization on local climate variability",
+          "site:nasa.gov unusual patterns of glacial retreat in Antarctica 2023"
+        ],
+        "archaeology news": [
+          "site:sciencedaily.com unexpected artifacts discovered in underwater archaeology 2024",
+          "site:nasa.gov counterintuitive findings from satellite data on ancient civilizations",
+          "site:nasa.gov surprising insights from DNA analysis of ancient human remains",
+          "site:nasa.gov declassified documents revealing lost ancient cities in the Amazon"
+        ]
+      },
+      "youtube_queries": []
+    },
+    {
+      "batch_num": 1,
+      "angle": "Hidden mechanisms — find NEW untapped mechanisms not yet on YouTube",
+      "queries_by_area": {
+        "latest science news": [
+          "CRISPR gene editing unexpected effects on off-target genes",
+          "mRNA vaccine technology immune response mechanism not widely understood",
+          "quantum entanglement implications for secure communication systems",
+          "bacteria in extreme environments surprising resilience mechanisms"
+        ],
+        "space": [
+          "Parker Solar Probe surprising findings about solar wind acceleration",
+          "James Webb Space Telescope unexpected insights into galaxy formation",
+          "Lunar Gateway construction hidden challenges in microgravity",
+          "Mars Helicopter Ingenuity flight mechanics that defy expectations"
+        ],
+        "technology": [
+          "blockchain consensus mechanisms that challenge traditional banking systems",
+          "AI bias in facial recognition technology hidden algorithms affecting accuracy",
+          "5G technology propagation unexpected effects on urban infrastructure",
+          "quantum computing error correction surprising methods for stability"
+        ],
+        "geography": [
+          "Iceland geothermal energy surprising sustainability mechanisms",
+          "Great Barrier Reef coral bleaching unexpected resilience factors",
+          "urban heat islands hidden factors affecting city climate",
+          "Antarctic ice shelf dynamics mechanisms influencing global sea levels"
+        ],
+        "archaeology news": [
+          "Göbekli Tepe construction techniques that challenge historical timelines",
+          "Nazca Lines hidden engineering principles behind ancient geoglyphs",
+          "Pompeii preservation unexpected factors in volcanic ash",
+          "Maya civilization water management systems surprising engineering feats"
+        ]
+      },
+      "youtube_queries": []
+    },
+    {
+      "batch_num": 2,
+      "angle": "Impossible human stories — Dantzig, Doss, Perelman pattern",
+      "queries_by_area": {
+        "latest science news": [
+          "gallium 29.8-degree melting point heat liquefies hand effect site:sciencedaily.com",
+          "quantum tunneling electrons forbidden energy barriers site:arxiv.org",
+          "repo haircut central banks discount collateral value systemic risk site:sciencedaily.com",
+          "lotus effect contact angle hydrophobic surface water dirt site:sciencedaily.com"
+        ],
+        "space": [
+          "Parker Solar Probe closest approach Sun solar atmosphere study site:nasa.gov",
+          "James Webb Space Telescope first image exoplanet atmosphere analysis site:nasa.gov",
+          "Voyager 2 interstellar space data cosmic rays study site:nasa.gov",
+          "Hubble Space Telescope black hole discovery galaxy center site:nasa.gov"
+        ],
+        "technology": [
+          "AI-generated art copyright legal case ruling site:sciencedaily.com",
+          "quantum computing breakthrough IBM 127-qubit processor site:arxiv.org",
+          "5G technology health risks scientific study site:sciencedaily.com",
+          "blockchain application supply chain transparency case study site:sciencedaily.com"
+        ],
+        "geography": [
+          "Lake Hillier pink color scientific explanation site:sciencedaily.com",
+          "Mount Everest height measurement international agreement site:sciencedaily.com",
+          "Antarctica ice shelf collapse impact sea level rise study site:sciencedaily.com",
+          "Amazon rainforest deforestation rate satellite data analysis site:sciencedaily.com"
+        ],
+        "archaeology news": [
+          "Göbekli Tepe ancient civilization discovery dating techniques site:sciencedaily.com",
+          "Nazca Lines new geoglyphs discovery satellite imagery site:sciencedaily.com",
+          "Machu Picchu hidden structures LiDAR technology site:sciencedaily.com",
+          "ancient Roman road network archaeological findings site:sciencedaily.com"
+        ]
+      },
+      "youtube_queries": []
+    },
+    {
+      "batch_num": 3,
+      "angle": "Scientific journals & medical case studies — counterintuitive peer-reviewed findings",
+      "queries_by_area": {
+        "latest science news": [
+          "site:sciencedaily.com brain organoid electrical activity spontaneous firing 2023",
+          "site:nature.com contactless payment NFC card harvesting RF field 2024",
+          "PubMed pacemaker refractory period ignores electrical signal unexpected result",
+          "arxiv.org CNC machine tool compensation wear mid-cut correction 2024"
+        ],
+        "space": [
+          "site:nasa.gov Hubble telescope unexpected findings exoplanets 2023",
+          "arxiv.org gravitational waves detection surprising characteristics 2024",
+          "site:sciencedaily.com Mars rover soil analysis unexpected mineral composition",
+          "NEJM cosmic microwave background radiation discovery contradicts inflation theory"
+        ],
+        "technology": [
+          "site:arxiv.org optogenetics fiber optic single neurons light activation 2024",
+          "site:nature.com unexpected cybersecurity breach methods 2023",
+          "sciencedaily.com 3D printing biodegradable materials surprising strength results",
+          "PubMed AI diagnostics accuracy paradox in medical imaging"
+        ],
+        "geography": [
+          "site:sciencedaily.com climate change unexpected effects on coastal erosion 2023",
+          "arxiv.org urban heat islands counterintuitive cooling effects observed 2024",
+          "site:nature.com ancient civilizations surprising geographic expansions 2023",
+          "PubMed unexpected health impacts of urbanization on rural populations"
+        ],
+        "archaeology news": [
+          "site:nature.com ancient DNA discovery overturns migration theories 2023",
+          "arxiv.org archaeological finds contradicting established historical timelines 2024",
+          "PubMed unexpected artifacts found in pre-colonial sites 2023",
+          "site:sciencedaily.com underwater archaeology surprising shipwreck discoveries"
+        ]
+      },
+      "youtube_queries": []
+    },
+    {
+      "batch_num": 4,
+      "angle": "Dark irony & institutional betrayal — official incident records",
+      "queries_by_area": {
+        "latest science news": [
+          "CRISPR gene editing unintended mutations Nature 2021",
+          "HIV vaccine trial failure unexpected immune response JAMA 2022",
+          "Antibiotic resistance rise linked to agricultural runoff CDC 2023",
+          "Microplastics found in human blood study 2022"
+        ],
+        "space": [
+          "Mars Perseverance rover sample collection issues NASA 2023",
+          "Hubble Space Telescope dark matter map discovery 2021",
+          "James Webb Telescope unexpected exoplanet temperature readings 2022",
+          "Voyager 1 cosmic ray data anomaly report NASA 2023"
+        ],
+        "technology": [
+          "Apple AirPods sound quality degradation report 2022",
+          "Tesla Autopilot accident investigation NHTSA 2021",
+          "Facebook algorithm bias case study 2022",
+          "Samsung Galaxy battery explosion incidents 2021"
+        ],
+        "geography": [
+          "California wildfires unexpected ignition sources CAL FIRE 2022",
+          "Greenland ice melt feedback loop study 2023",
+          "Amazon rainforest deforestation unexpected impacts report 2022",
+          "Iceland volcanic eruption 2021 unexpected ash cloud effects"
+        ],
+        "archaeology news": [
+          "Pompeii skeletons reveal unexpected burial practices study 2023",
+          "Ancient Egyptian tomb discovery revealing societal structure 2022",
+          "Mayan civilization collapse linked to drought evidence 2021",
+          "Stonehenge excavation reveals surprising construction methods 2022"
+        ]
+      },
+      "youtube_queries": []
+    },
+    {
+      "batch_num": 5,
+      "angle": "Mundane Revelation — everyday objects with hidden mechanisms or purposes",
+      "queries_by_area": {
+        "latest science news": [
+          "Cern Large Hadron Collider Higgs boson discovery implications 2012",
+          "CRISPR gene editing technology advancements ethical concerns 2021",
+          "mRNA vaccines mechanism immune response COVID-19 2020",
+          "quantum entanglement experiments implications for communication 2022"
+        ],
+        "space": [
+          "James Webb Space Telescope first images impact on astronomy 2022",
+          "Parker Solar Probe mission solar atmosphere insights 2021",
+          "Mars Perseverance Rover sample collection strategy 2021",
+          "Lunar Gateway space station design purpose for Artemis program 2021"
+        ],
+        "technology": [
+          "3D printing bioprinting human organs potential applications 2021",
+          "smartphone LiDAR technology how it enhances photography 2020",
+          "blockchain beyond cryptocurrency applications in supply chain 2021",
+          "augmented reality glasses design challenges and future prospects 2022"
+        ],
+        "geography": [
+          "Sahara Desert climate change impact on vegetation patterns 2021",
+          "Great Barrier Reef coral bleaching recovery efforts 2020",
+          "Amazon Rainforest deforestation statistics and consequences 2021",
+          "Iceland volcanic activity monitoring techniques and discoveries 2022"
+        ],
+        "archaeology news": [
+          "Göbekli Tepe excavation findings ancient rituals implications 2021",
+          "Machu Picchu new discoveries about Inca engineering techniques 2022",
+          "Pompeii frescoes restoration techniques and historical significance 2021",
+          "Nazca Lines recent studies uncovering ancient purpose 2022"
+        ]
+      },
+      "youtube_queries": []
+    },
+    {
+      "batch_num": 6,
+      "angle": "Disbelief Frame & Corporate Catastrophe — sounds-fake-but-true + brand + exact dollar",
+      "queries_by_area": {
+        "latest science news": [
+          "CRISPR Cas9 gene editing accuracy how it targets specific DNA sequences site:nature.com",
+          "Liquid Helium superconductivity LHC magnet physics 2002 site:sciencedaily.com",
+          "Dolphin signature whistles identity research study site:journals.plos.org",
+          "Mars habitat radiation shielding water walls cosmic rays site:nasa.gov"
+        ],
+        "space": [
+          "Mars habitat radiation protection using water walls against cosmic rays site:nasa.gov",
+          "Voyager 1 interstellar communication challenges 2021 site:sciencedaily.com",
+          "Kepler Space Telescope exoplanet discovery methods site:nature.com",
+          "Hubble Space Telescope unexpected findings black holes site:sciencedaily.com"
+        ],
+        "technology": [
+          "Solar-powered Zephyr drone flight record 2022 site:sciencedaily.com",
+          "Quantum computing breakthrough Google Sycamore 2019 site:arxiv.org",
+          "5G technology health effects research study 2021 site:sciencedaily.com",
+          "Electric vehicle battery recycling methods 2023 site:sciencedaily.com"
+        ],
+        "geography": [
+          "Burj Khalifa structural damping systems wind load transfer site:sciencedaily.com",
+          "Lake Baikal ancient age unique biodiversity site:nature.com",
+          "Antarctic ice shelf melting impacts global sea levels site:nasa.gov",
+          "Mount Everest height measurement techniques 2020 site:sciencedaily.com"
+        ],
+        "archaeology news": [
+          "Göbekli Tepe archaeological findings ancient rituals site:journals.plos.org",
+          "Lost city of Heracleion underwater discoveries site:nature.com",
+          "Machu Picchu construction techniques revealed 2022 site:sciencedaily.com",
+          "Ancient Roman concrete durability study site:journals.plos.org"
+        ]
+      },
+      "youtube_queries": []
+    }
+  ]
+}

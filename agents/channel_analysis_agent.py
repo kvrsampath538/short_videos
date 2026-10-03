@@ -1,17 +1,26 @@
 import json
 import os
 import re
+import sys
 import requests
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 
-CHANNEL_HANDLE = "Worldaffairs0138"
-CHANNEL_URL = "https://www.youtube.com/@Worldaffairs0138"
-ANALYSIS_FILE = Path(__file__).parent.parent / "channel_analysis.json"
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from vectordb import get_db
+from ollama_client import get_haiku_llm
+from settings import get_channel_url, get_channel_handle
+
+
+def _channel_url() -> str:
+    return get_channel_url()
+
+
+def _channel_handle() -> str:
+    return get_channel_handle().lstrip("@")
 
 AREAS = [
     "history", "science", "latest science news", "geography", "nature", "space",
@@ -57,13 +66,13 @@ def fetch_channel_data(api_key: str, max_videos: int = 500) -> tuple[dict, list[
     # 1. Channel ID + totals
     r = requests.get(f"{_YT}/channels", params={
         "part": "contentDetails,statistics",
-        "forHandle": CHANNEL_HANDLE,
+        "forHandle": _channel_handle(),
         "key": api_key,
     }, timeout=20)
     r.raise_for_status()
     items = r.json().get("items", [])
     if not items:
-        raise ValueError(f"Channel @{CHANNEL_HANDLE} not found — check YOUTUBE_API_KEY")
+        raise ValueError(f"Channel @{_channel_handle()} not found — check YOUTUBE_API_KEY")
 
     ch = items[0]
     uploads_playlist = ch["contentDetails"]["relatedPlaylists"]["uploads"]
@@ -163,11 +172,7 @@ def categorize_shorts(shorts: list[dict]) -> list[dict]:
     if not shorts:
         return []
 
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
-        temperature=0.05,
-    )
+    llm = get_haiku_llm(temperature=0.05)
 
     categorized: list[dict] = []
     for i in range(0, len(shorts), 50):
@@ -241,7 +246,7 @@ def analyze_channel_node(state: dict) -> dict:
         }
 
     try:
-        print(f"\n[Channel Analysis] Fetching videos from @{CHANNEL_HANDLE}...")
+        print(f"\n[Channel Analysis] Fetching videos from @{_channel_handle()}...")
         channel_stats, shorts = fetch_channel_data(api_key)
         print(f"[Channel Analysis] {len(shorts)} Shorts found")
 
@@ -252,15 +257,22 @@ def analyze_channel_node(state: dict) -> dict:
         top_overall = sorted(categorized, key=lambda x: x.get("view_count", 0), reverse=True)[:10]
 
         result = {
-            "channel_url":    CHANNEL_URL,
+            "channel_url":    _channel_url(),
             "channel_stats":  channel_stats,
             "total_shorts":   len(categorized),
             "area_stats":     area_stats,
             "top_overall":    top_overall,
+            "all_shorts":     categorized,
             "analyzed_at":    datetime.now(timezone.utc).isoformat(),
         }
-        ANALYSIS_FILE.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
-        print(f"[Channel Analysis] Saved → {ANALYSIS_FILE.name}")
+        db = get_db()
+        # Store shorts in the channel collection (searchable)
+        for short in categorized:
+            db.upsert_channel_short(short)
+        # Store metadata (stats, area_stats, top_overall) as a config blob
+        meta = {k: v for k, v in result.items() if k != "all_shorts"}
+        db.save_config("channel_analysis", meta)
+        print(f"[Channel Analysis] Saved {len(categorized)} shorts to VectorDB channel collection")
         return {"channel_analysis": result, "error": None}
 
     except Exception as e:
@@ -270,9 +282,10 @@ def analyze_channel_node(state: dict) -> dict:
 
 
 def load_channel_analysis() -> dict | None:
-    if not ANALYSIS_FILE.exists():
+    """Load channel analysis from VectorDB (meta + all_shorts reconstructed)."""
+    db = get_db()
+    meta = db.load_config("channel_analysis")
+    if not meta:
         return None
-    try:
-        return json.loads(ANALYSIS_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return None
+    shorts = db.get_all("channel")
+    return {**meta, "all_shorts": shorts}

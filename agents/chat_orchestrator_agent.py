@@ -1,7 +1,11 @@
 import json
-import os
-from langchain_google_genai import ChatGoogleGenerativeAI
+import sys
+from pathlib import Path
+from ollama_client import get_haiku_llm
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from settings import get_channel_url, get_channel_language
 
 # ── Intent detection ──────────────────────────────────────────────────────────
 
@@ -36,17 +40,40 @@ Return ONLY valid JSON (no markdown, no explanation):
 }"""
 
 
+def _local_detect_intent(msg: str) -> dict | None:
+    """Keyword-based intent detection for unambiguous requests. Returns None if ambiguous."""
+    m = msg.lower().strip()
+
+    if any(p in m for p in ["generate ideas", "find ideas", "new ideas", "suggest ideas",
+                             "what should i make", "more ideas", "give me ideas", "create ideas"]):
+        return {"action": "generate_ideas", "topic": None, "idea_title": None, "confidence": 0.95}
+
+    if any(p in m for p in ["check saturation", "is this saturated", "already covered",
+                             "how competitive", "already exists on youtube", "saturation check"]):
+        return {"action": "check_saturation", "topic": None, "idea_title": None, "confidence": 0.95}
+
+    if any(p in m for p in ["audience analysis", "analyze audience", "analyse audience",
+                             "what performs well", "audience interest", "run audience"]):
+        return {"action": "analyze_audience", "topic": None, "idea_title": None, "confidence": 0.95}
+
+    if any(p in m for p in ["generate storyboard", "create storyboard", "make storyboard",
+                             "create video for", "make video for", "build storyboard"]):
+        return {"action": "generate_storyboard", "topic": None, "idea_title": None, "confidence": 0.95}
+
+    return None  # ambiguous — fall through to LLM
+
+
 def detect_intent(
     user_message: str,
     chat_history: list[dict],
     current_idea: dict | None = None,
 ) -> dict:
-    """Lightweight LLM call to classify user intent and extract topic."""
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
-        temperature=0.05,
-    )
+    """Classify user intent — tries local keyword matching first, falls back to LLM."""
+    local = _local_detect_intent(user_message)
+    if local:
+        return local
+
+    llm = get_haiku_llm(temperature=0.05)
 
     # Summarise recent history (last 4 turns) for context
     history_lines = []
@@ -83,10 +110,13 @@ def detect_intent(
 
 # ── Conversational LLM response ───────────────────────────────────────────────
 
-_CHAT_SYSTEM = """You are a creative assistant for a Telugu YouTube Shorts channel.
+def _chat_system() -> str:
+    channel_url = get_channel_url()
+    language = get_channel_language()
+    return f"""You are a creative assistant for a {language} YouTube Shorts channel.
 
 CHANNEL CONTEXT:
-The channel (https://www.youtube.com/@Worldaffairs0138) creates educational Telugu YouTube Shorts
+The channel ({channel_url}) creates educational {language} YouTube Shorts
 covering: history, science, psychology experiments, hidden engineering mechanisms, world cultures,
 India government stories, space, archaeology, aviation incidents, inspiring people, and more.
 
@@ -97,9 +127,9 @@ Help the creator think, refine, and strategise. You can:
 • Suggest alternative framings for a concept
 • Explain background context on a topic
 • Give feedback on structure, pacing, emotional payoff
-• Discuss content strategy for Telugu-speaking audiences
+• Discuss content strategy for {language}-speaking audiences
 
-WHAT MAKES TELUGU SHORTS VIRAL:
+WHAT MAKES {language.upper()} SHORTS VIRAL:
 • The HOOK must create a gap in knowledge the viewer must close ("I can't believe I didn't know this")
 • COUNTERINTUITIVE facts — "everyone knows X, but actually Y"
 • HIDDEN SYSTEMS — "this invisible mechanism has been running in plain sight"
@@ -117,13 +147,9 @@ def chat_response(
     current_idea: dict | None = None,
 ) -> str:
     """Generate a conversational LLM response using full chat history."""
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        google_api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
-        temperature=0.7,
-    )
+    llm = get_haiku_llm(temperature=0.7)
 
-    messages: list = [SystemMessage(content=_CHAT_SYSTEM)]
+    messages: list = [SystemMessage(content=_chat_system())]
 
     if current_idea:
         ctx = (

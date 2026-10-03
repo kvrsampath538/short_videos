@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-10-03T17:28:53.654592+00:00",
+  "target_areas": [
+    "latest science news",
+    "space",
+    "technology",
+    "geography",
+    "archaeology news"
+  ],
+  "banned_words": [],
+  "recent_titles": [
+    "Pineapples Take Two Whole Years To Grow — Then Ripen In Just A Few Days",
+    "Some Tomatoes Turn Purple In The Cold — And It's More Nutritious Than Red Ones",
+    "The World's Largest Banknote Was The Size Of A Table — Issued By The Philippines",
+    "Ravens Can Mimic Human Speech Without Training — They're Naturally Better Than Parrots",
+    "Your Heart Beats Differently When You Listen To Your Favorite Song — It's Personal Tuning",
+    "Your Immune System Is Destroying Itself — And That's Essential",
+    "Wild Cockatoos Open Garbage Bins — Animals Outsmarting Humans",
+    "Your Skin Can Mimic Squid — The Hidden Potential Of Human Regeneration",
+    "Cows Have Learned How To Use Tools — Meet Veronika, The Innovator",
+    "Venice Is Built On Wooden Stilts — And It's Survived For 1,600 Years",
+    "A Town That Moved Nations Without Anyone Noticing — A Boundary Blunder",
+    "There's A Town Where Cats Outnumber Humans — And It's Legal",
+    "There's A Town Where Cats Hold Political Office — Talkeetna's Feline Mayor",
+    "Pine Nuts Aren't Nuts — They're Seeds From A Cone",
+    "Your Stomach Lining Renews Every 4 Days — It's The Fastest In Your Body",
+    "Your Brain Shrinks 0.2% Every Decade After 40 — But Exercise Reverses This",
+    "Your Heart Can Synchronize With Your Partner's — Sharing A Pulse Over Distance",
+    "Pandas Are Carnivores At Heart — But They Eat Almost Exclusively Bamboo",
+    "There's A Single Tree That Owns Its Own Land — The Lone Cypress Is A Legal Marvel",
+    "The Eiffel Tower Was Once A Temporary Display — Meant To Last Only 20 Years!",
+    "The $10 Billion Note That's Still Legal Tender — But Worth $30 Million To Collectors",
+    "Russia Is So Big, It Has 11 Time Zones — More Than Half Of The Total On Earth",
+    "The Word 'Bride' Originates From An Ancient Practice — Meaning 'To Cook'",
+    "French Fries Originated In Belgium — Misnamed The Whole Time",
+    "Vienna Has More Psychiatrists Than Any City — It's The Therapy Capital"
+  ],
+  "history_count": 1477,
+  "favorites_count": 43,
+  "favorites_sample": [
+    {
+      "title": "Australia's Camel Population Outnumbers Its Koalas — By Millions",
+      "area": "unknown facts",
+      "viral_hook": "Australia has over 1 million camels, far outnumbering its koalas. The Outback is a camel kingdom!"
+    },
+    {
+      "title": "There's A Country That Sells Sand To The Middle East — And It's A Desert Nation",
+      "area": "unknown facts",
+      "viral_hook": "Namibia exports sand to the Middle East — from its own desert!"
+    },
+    {
+      "title": "There's More Oxygen At The Top Of A Mountain Than Sea Level — High Altitude Confusion",
+      "area": "unknown facts",
+      "viral_hook": "The top of a mountain has the same oxygen percentage as sea level — it's all about air pressure!"
+    },
+    {
+      "title": "Butterflies Drink Turtle Tears — An Unlikely Friendship",
+      "area": "unknown facts",
+      "viral_hook": "Butterflies in the Amazon drink turtle tears — they need the salt to survive!"
+    },
+    {
+      "title": "Some Plants Strategically Steal Neighboring Light — Known as 'Light Pirates'",
+      "area": "surprising facts",
+      "viral_hook": "Meet 'light pirates' — plants that steal sunlight from their neighbors!"
+    }
+  ],
+  "history_analysis": {
+    "saturated_patterns": [
+      "Interesting facts about everyday items or concepts (e.g., food, technology, health)"
+    ],
+    "gap_areas": [
+      "Titles focusing on local culture, history, or science relevant to Telugu-speaking audiences",
+      "Titles that explore traditional knowledge or practices in Telugu culture"
+    ],
+    "strong_title_pattern": "Titles that present surprising or counterintuitive facts, often with a hook that piques curiosity and encourages viewers to learn more."
+  }
+}
